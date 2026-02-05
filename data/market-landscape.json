@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "description": "Market landscape for Go-to-market strategy",
+    "period": "2023-2024",
+    "msme_source": "ADB Asia SME Monitor 2025 - Part II: Country Reviews",
+    "msme_url": "https://www.adb.org/sites/default/files/publication/1096981/asia-sme-monitor-2025.pdf",
+    "wb_source": "World Bank Enterprise Surveys - Economy Data, Finance topic",
+    "wb_url": "https://www.enterprisesurveys.org/en/data/exploreeconomies"
+  },
+  "countries": [
+    {
+      "code": "MYS",
+      "name": "Malaysia",
+      "msme_gdp_m_usd": 125000,
+      "msme_gdp_to_total_pct": 38.5,
+      "msme_loans_to_total_pct": 42.1,
+      "msme_employees_to_total_pct": 66.2,
+      "msmes_by_sector_pct": {
+        "manufacturing": 18,
+        "services": 45,
+        "trade": 28,
+        "others": 9
+      },
+      "pct_firms_checking_savings": 92,
+      "pct_firms_bank_working_capital": 28,
+      "pct_payments_electronically": 65
+    },
+    {
+      "code": "THA",
+      "name": "Thailand",
+      "msme_gdp_m_usd": 185000,
+      "msme_gdp_to_total_pct": 43.2,
+      "msme_loans_to_total_pct": 38.7,
+      "msme_employees_to_total_pct": 78.5,
+      "msmes_by_sector_pct": {
+        "manufacturing": 22,
+        "services": 38,
+        "trade": 32,
+        "others": 8
+      },
+      "pct_firms_checking_savings": 88,
+      "pct_firms_bank_working_capital": 22,
+      "pct_payments_electronically": 58
+    },
+    {
+      "code": "PHL",
+      "name": "Philippines",
+      "msme_gdp_m_usd": 95000,
+      "msme_gdp_to_total_pct": 36.8,
+      "msme_loans_to_total_pct": 18.5,
+      "msme_employees_to_total_pct": 62.1,
+      "msmes_by_sector_pct": {
+        "manufacturing": 12,
+        "services": 42,
+        "trade": 35,
+        "others": 11
+      },
+      "pct_firms_checking_savings": 78,
+      "pct_firms_bank_working_capital": 15,
+      "pct_payments_electronically": 42
+    }
+  ]
+}

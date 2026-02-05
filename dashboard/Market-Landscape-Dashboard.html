@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StoreHub - GTM Strategy</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; font-family: sans-serif; background: #0f0f12; color: #e8e8ed; }
+    .app { max-width: 1140px; margin: 0 auto; padding: 1rem 1.25rem; }
+    header { border-bottom: 1px solid #2a2a30; padding-bottom: 0.75rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    header h1 { margin: 0 0 0.2rem; font-size: 1.65rem; font-weight: 700; }
+    header p { margin: 0; font-size: 0.8rem; color: #8b8b96; }
+    .page-nav { display: flex; gap: 0.5rem; }
+    .page-nav button { background: #18181c; color: #8b8b96; border: 1px solid #2a2a30; border-radius: 6px; padding: 0.4rem 0.75rem; font-size: 0.8rem; cursor: pointer; }
+    .page-nav button:hover { color: #e8e8ed; border-color: #3a3a42; }
+    .page-nav button.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .exec-summary { background: rgba(99, 102, 241, 0.12); border-left: 4px solid #6366f1; border-radius: 0 8px 8px 0; padding: 0.9rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; line-height: 1.5; }
+    .exec-summary strong { color: #a5b4fc; }
+
+    .tabs { margin-bottom: 1rem; padding: 0.5rem 0; border-bottom: 1px solid #2a2a30; }
+    .tabs-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+    .tabs-row:last-child { margin-bottom: 0; }
+    .tabs-label { font-size: 0.8rem; color: #8b8b96; margin-right: 0.25rem; min-width: 6rem; }
+    .tabs button { background: #18181c; color: #8b8b96; border: 1px solid #2a2a30; border-radius: 6px; padding: 0.4rem 0.65rem; font-size: 0.78rem; cursor: pointer; }
+    .tabs button:hover { color: #e8e8ed; border-color: #3a3a42; }
+    .tabs button.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+
+    .chart-panel { display: none; }
+    .chart-panel.active { display: block; }
+
+    .chart-card { background: #18181c; border: 1px solid #2a2a30; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; position: relative; }
+    .chart-card h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+    .chart-card .desc { margin: 0 0 0.6rem; font-size: 0.75rem; color: #8b8b96; }
+    .chart-filter { position: absolute; top: 1rem; right: 1rem; }
+    .chart-filter select { background: #2a2a30; color: #e8e8ed; border: 1px solid #3a3a42; border-radius: 6px; padding: 0.35rem 0.6rem; font-size: 0.8rem; cursor: pointer; }
+    .chart-wrap { margin-top: 0.5rem; }
+
+    .vertical-bar-wrap { width: 100%; height: 360px; display: flex; align-items: flex-end; gap: 3px; padding: 0 0 32px 0; position: relative; }
+    .vertical-bar-cell { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 0; height: 320px; justify-content: flex-end; }
+    .vertical-bar { width: 100%; max-width: 36px; min-height: 4px; border-radius: 4px 4px 0 0; background: #6366f1; position: relative; }
+    .vertical-bar.above-avg { background: #6366f1; }
+    .vertical-bar.below-avg { background: #e8e8ed; }
+    .vertical-bar-value { font-size: 0.6rem; color: #e8e8ed; font-weight: 600; margin-bottom: 2px; white-space: nowrap; }
+    .vertical-bar-label { font-size: 0.6rem; color: #8b8b96; margin-top: 4px; text-align: center; transform: rotate(-45deg); white-space: nowrap; max-width: 56px; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; }
+    .vertical-bar-avg { position: absolute; left: 0; right: 0; height: 2px; background: #dc2626; z-index: 2; pointer-events: none; }
+    .vertical-y-label { position: absolute; left: 4px; font-size: 0.7rem; color: #8b8b96; }
+
+    .line-chart-wrap { width: 100%; height: 400px; }
+    .line-chart-wrap svg { width: 100%; height: 100%; }
+    .avg-line { stroke: #dc2626; stroke-width: 2; stroke-dasharray: 6 4; }
+    .country-line { fill: none; stroke: #6366f1; stroke-width: 1.5; }
+    .line-point-value { font-size: 8px; fill: #e8e8ed; text-anchor: middle; }
+
+    .stacked-row { margin-bottom: 0.5rem; }
+    .stacked-label { font-size: 0.75rem; margin-bottom: 0.2rem; color: #8b8b96; }
+    .stacked-track { height: 24px; border-radius: 4px; overflow: hidden; display: flex; max-width: 100%; width: 720px; cursor: default; position: relative; }
+    .stacked-seg { height: 100%; min-width: 0; transition: opacity 0.15s; cursor: pointer; }
+    .stacked-seg:hover { opacity: 0.9; }
+    .sector-tooltip { position: fixed; background: #1f1f24; border: 1px solid #3a3a42; border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.8rem; color: #e8e8ed; z-index: 100; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); display: none; white-space: nowrap; }
+    .sector-tooltip.visible { display: block; }
+
+    footer { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #2a2a30; font-size: 0.75rem; color: #8b8b96; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>StoreHub - GTM Strategy</h1>
+        <p>Go-to-Market 전략 수립 · 20개국 (2023–2024)</p>
+      </div>
+      <nav class="page-nav" id="page-nav">
+        <button type="button" class="active" data-page="whereto">Where to</button>
+        <button type="button" data-page="whyso">Why so</button>
+        <button type="button" data-page="howto">How to</button>
+      </nav>
+    </header>
+
+    <div id="page-whereto" class="page active">
+      <div id="exec-summary" class="exec-summary" role="region" aria-label="Executive summary"></div>
+      <nav class="tabs" id="tabs">
+      <div class="tabs-row">
+        <span class="tabs-label">MSME index:</span>
+        <button type="button" class="active" data-tab="1">1. MSME GDP</button>
+        <button type="button" data-tab="2">2. MSME GDP %</button>
+        <button type="button" data-tab="4">4. MSME Employee %</button>
+        <button type="button" data-tab="5">5. MSME by Sector</button>
+      </div>
+      <div class="tabs-row">
+        <span class="tabs-label">Finance index:</span>
+        <button type="button" data-tab="6">6. % checking/saving account</button>
+        <button type="button" data-tab="7">7. % banks for working capital</button>
+        <button type="button" data-tab="8">8. % of payments electronically</button>
+      </div>
+    </nav>
+
+    <div id="panel1" class="chart-panel active">
+      <div class="chart-card">
+        <h3>1) MSME GDP (B USD)</h3>
+        <p class="desc">x축: 국가, y축: GDP value · 붉은선: 20국 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart1">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap" id="chart1"></div>
+      </div>
+    </div>
+
+    <div id="panel2" class="chart-panel">
+      <div class="chart-card">
+        <h3>2) MSME GDP %</h3>
+        <p class="desc">20개국 MSME GDP to total (%) · 붉은선: 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart2">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap line-chart-wrap" id="chart2"></div>
+      </div>
+    </div>
+
+    <div id="panel3" class="chart-panel">
+      <div class="chart-card">
+        <h3>3) MSME Loan 비중 (%)</h3>
+        <p class="desc">20개국 MSME loans to total loans (%) · 붉은선: 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart3">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap line-chart-wrap" id="chart3"></div>
+      </div>
+    </div>
+
+    <div id="panel4" class="chart-panel">
+      <div class="chart-card">
+        <h3>4) MSME Employees to Total (%)</h3>
+        <p class="desc">20개국 MSME employees to total (%) · 붉은선: 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart4">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap line-chart-wrap" id="chart4"></div>
+      </div>
+    </div>
+
+    <div id="panel5" class="chart-panel">
+      <div class="chart-card">
+        <h3>5) MSME by Sector (%)</h3>
+        <p class="desc">선택 국가의 2023·2024년 섹터별 비중 · 마우스를 올리면 섹터명 표시</p>
+        <div class="chart-filter">
+          <select id="filter-chart5"></select>
+        </div>
+        <div class="chart-wrap" id="chart5"></div>
+      </div>
+    </div>
+
+    <div id="panel6" class="chart-panel">
+      <div class="chart-card">
+        <h3>6) % of firms with checking/savings account</h3>
+        <p class="desc">20개국 · 붉은선: 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart6">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap line-chart-wrap" id="chart6"></div>
+      </div>
+    </div>
+
+    <div id="panel7" class="chart-panel">
+      <div class="chart-card">
+        <h3>7) % of firms using banks for working capital</h3>
+        <p class="desc">20개국 · 붉은선: 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart7">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap line-chart-wrap" id="chart7"></div>
+      </div>
+    </div>
+
+    <div id="panel8" class="chart-panel">
+      <div class="chart-card">
+        <h3>8) % of payments made electronically</h3>
+        <p class="desc">20개국 · 붉은선: 평균</p>
+        <div class="chart-filter">
+          <select id="filter-chart8">
+            <option value="2023">2023년</option>
+            <option value="2024" selected>2024년</option>
+          </select>
+        </div>
+        <div class="chart-wrap line-chart-wrap" id="chart8"></div>
+      </div>
+    </div>
+
+      <footer>
+        <p><strong>데이터 출처</strong> ADB Asia SME Monitor 2025 · World Bank Enterprise Surveys</p>
+      </footer>
+    </div>
+
+    <div id="page-whyso" class="page">
+      <div class="chart-card">
+        <h3>Why so</h3>
+        <p class="desc">내용을 추가할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div id="page-howto" class="page">
+      <div class="chart-card">
+        <h3>How to</h3>
+        <p class="desc">내용을 추가할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div id="sector-tooltip" class="sector-tooltip" aria-hidden="true"></div>
+
+  <script>
+(function() {
+  var COUNTRY_NAMES = [
+    'Malaysia','Thailand','Philippines','Vietnam','Indonesia','Cambodia','Laos',
+    'South Korea','China','India','Singapore','Taiwan',
+    'Brazil','Mexico','Colombia','Saudi Arabia','UAE',
+    'USA','UK',
+    'Egypt'
+  ];
+  var N = 20;
+
+  function rand(min, max, seed) {
+    var x = Math.sin((seed || 0) * 12.9898) * 43758.5453;
+    x = x - Math.floor(x);
+    return min + (max - min) * x;
+  }
+  function normSector(s) {
+    var t = s.mfg + s.svc + s.trade + s.other;
+    if (t <= 0) t = 1;
+    return { mfg: Math.round(100 * s.mfg / t), svc: Math.round(100 * s.svc / t), trade: Math.round(100 * s.trade / t), other: 100 - Math.round(100 * s.mfg / t) - Math.round(100 * s.svc / t) - Math.round(100 * s.trade / t) };
+  }
+
+  var DATA = [];
+  for (var i = 0; i < N; i++) {
+    var s23 = { mfg: rand(8, 28, i + 5), svc: rand(32, 52, i + 15), trade: rand(22, 38, i + 25), other: rand(5, 15, i + 35) };
+    var s24 = { mfg: rand(9, 29, i + 6), svc: rand(33, 53, i + 16), trade: rand(21, 37, i + 26), other: rand(4, 14, i + 36) };
+    DATA.push({
+      name: COUNTRY_NAMES[i],
+      msme_gdp_b: { 2023: Math.round(rand(25, 380, i)), 2024: Math.round(rand(28, 400, i + N)) },
+      msme_gdp_pct: { 2023: Math.round(rand(28, 48, i + 1) * 10) / 10, 2024: Math.round(rand(29, 50, i + N + 1) * 10) / 10 },
+      msme_loan_pct: { 2023: Math.round(rand(12, 45, i + 2) * 10) / 10, 2024: Math.round(rand(14, 46, i + N + 2) * 10) / 10 },
+      msme_emp_pct: { 2023: Math.round(rand(55, 82, i + 3) * 10) / 10, 2024: Math.round(rand(56, 84, i + N + 3) * 10) / 10 },
+      sector: { 2023: normSector(s23), 2024: normSector(s24) },
+      checking_pct: { 2023: Math.round(rand(62, 96, i + 4)), 2024: Math.round(rand(65, 97, i + N + 4)) },
+      bank_wc_pct: { 2023: Math.round(rand(10, 38, i + 5)), 2024: Math.round(rand(12, 40, i + N + 5)) },
+      electronic_pct: { 2023: Math.round(rand(28, 72, i + 6)), 2024: Math.round(rand(32, 76, i + N + 6)) }
+    });
+  }
+
+  function avgVal(getVal) {
+    var s = 0, c = 0;
+    for (var i = 0; i < DATA.length; i++) { var v = getVal(DATA[i]); if (v != null && !isNaN(v)) { s += v; c++; } }
+    return c ? s / c : 0;
+  }
+
+  function updateExecSummary(year) {
+    year = year || 2024;
+    var avgGdp = avgVal(function(d) { return d.msme_gdp_b[year]; });
+    var avgChk = avgVal(function(d) { return d.checking_pct[year]; });
+    var avgBwc = avgVal(function(d) { return d.bank_wc_pct[year]; });
+    var avgElec = avgVal(function(d) { return d.electronic_pct[year]; });
+    var list = [];
+    for (var i = 0; i < DATA.length; i++) {
+      var d = DATA[i];
+      if (d.msme_gdp_b[year] <= avgGdp) continue;
+      if (d.checking_pct[year] > avgChk || d.bank_wc_pct[year] > avgBwc || d.electronic_pct[year] > avgElec) continue;
+      list.push({ name: d.name, gdp: d.msme_gdp_b[year] });
+    }
+    list.sort(function(a, b) { return b.gdp - a.gdp; });
+    var names = list.map(function(x) { return x.name; });
+    var el = document.getElementById('exec-summary');
+    if (!el) return;
+    if (names.length === 0) {
+      el.innerHTML = '<strong>Executive summary</strong><br>MSME GDP가 평균보다 크면서 Finance 지표(6·7·8번)가 모두 평균 이하인 국가는 없습니다. (기준: ' + year + '년)';
+      return;
+    }
+    el.innerHTML = '<strong>Executive summary</strong><br>MSME 시장의 수요에도 불구하고 법인카드 등 corporate finance service가 열악한 국가는 ' + names.join(', ') + ' 이다. (기준: ' + year + '년)';
+  }
+
+  var BAR_AREA_HEIGHT = 320;
+  var BAR_WRAP_PADDING_BOTTOM = 32;
+
+  function renderChart1(year) {
+    year = +year;
+    var vals = DATA.map(function(d) { return d.msme_gdp_b[year]; });
+    var max = Math.max.apply(null, vals);
+    var av = avgVal(function(d) { return d.msme_gdp_b[year]; });
+    if (max <= 0) max = 1;
+    var avgBarHeightPx = (av / max) * BAR_AREA_HEIGHT;
+    var lineBottomPx = BAR_WRAP_PADDING_BOTTOM + avgBarHeightPx;
+    var html = '<div class="vertical-bar-wrap" style="position:relative">';
+    html += '<div class="vertical-bar-avg" style="bottom:' + lineBottomPx + 'px;left:0;right:0"></div>';
+    for (var i = 0; i < DATA.length; i++) {
+      var v = DATA[i].msme_gdp_b[year];
+      var pct = (v / max) * 100;
+      var barClass = v >= av ? 'above-avg' : 'below-avg';
+      html += '<div class="vertical-bar-cell" title="' + DATA[i].name + ': ' + v + ' B USD">';
+      html += '<div class="vertical-bar-value">' + v + '</div>';
+      html += '<div class="vertical-bar ' + barClass + '" style="height:' + pct + '%"></div>';
+      html += '<div class="vertical-bar-label">' + DATA[i].name + '</div></div>';
+    }
+    html += '</div>';
+    document.getElementById('chart1').innerHTML = html;
+  }
+
+  function renderLineChart(containerId, getVal, year, yMin, yMax) {
+    year = +year;
+    var vals = DATA.map(function(d) { return getVal(d, year); });
+    var av = avgVal(function(d) { return getVal(d, year); });
+    var min = yMin != null ? yMin : Math.min.apply(null, vals);
+    var max = yMax != null ? yMax : Math.max.apply(null, vals);
+    if (max === min) max = min + 1;
+    var w = 1200, h = 360, pad = { left: 44, right: 28, top: 20, bottom: 52 };
+    var x0 = pad.left, x1 = w - pad.right, y0 = pad.top, y1 = h - pad.bottom;
+    var scaleX = function(i) { return x0 + (i / (DATA.length - 1 || 1)) * (x1 - x0); };
+    var scaleY = function(v) { return y1 - (v - min) / (max - min) * (y1 - y0); };
+    var avgY = scaleY(av);
+    var svg = '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet"><g>';
+    svg += '<line class="avg-line" x1="' + x0 + '" y1="' + avgY + '" x2="' + x1 + '" y2="' + avgY + '"/>';
+    svg += '<polyline class="country-line" points="';
+    for (var i = 0; i < vals.length; i++) svg += scaleX(i) + ',' + scaleY(vals[i]) + ' ';
+    svg += '" />';
+    for (var i = 0; i < DATA.length; i++) {
+      var x = scaleX(i), y = scaleY(vals[i]);
+      var vStr = typeof vals[i] === 'number' && (vals[i] % 1 !== 0 || vals[i] > 99) ? vals[i].toFixed(1) : vals[i];
+      svg += '<text class="line-point-value" x="' + x + '" y="' + (y - 5) + '" title="' + DATA[i].name + ': ' + vStr + '">' + vStr + '</text>';
+    }
+    for (var i = 0; i < DATA.length; i++) {
+      var x = scaleX(i);
+      svg += '<text x="' + x + '" y="' + (h - 6) + '" fill="#8b8b96" font-size="9" text-anchor="end" transform="rotate(-55 ' + x + ' ' + (h - 6) + ')">' + DATA[i].name + '</text>';
+    }
+    svg += '<text x="' + (x1 - 4) + '" y="' + (avgY + 3) + '" fill="#dc2626" font-size="9" text-anchor="end">avg ' + (typeof av === 'number' && (av % 1 !== 0 || av > 99) ? av.toFixed(1) : av) + '</text>';
+    var step = (max - min) / 4;
+    for (var g = 0; g <= 4; g++) { var vy = min + step * g; svg += '<text x="4" y="' + (scaleY(vy) + 3) + '" fill="#8b8b96" font-size="8">' + (vy % 1 ? vy.toFixed(0) : vy) + '</text>'; }
+    svg += '</g></svg>';
+    document.getElementById(containerId).innerHTML = svg;
+  }
+
+  function renderChart5(countryIdx) {
+    var d = DATA[countryIdx];
+    var labels = { mfg: '제조 (Manufacturing)', svc: '서비스 (Services)', trade: '무역 (Trade)', other: '기타 (Others)' };
+    var h = '';
+    [2023, 2024].forEach(function(yr) {
+      var s = d.sector[yr];
+      h += '<div class="stacked-row"><div class="stacked-label">' + yr + '년</div>';
+      h += '<div class="stacked-track">';
+      h += '<div class="stacked-seg" style="width:' + s.mfg + '%;background:#6366f1" data-sector="' + labels.mfg + ' ' + s.mfg + '%"></div>';
+      h += '<div class="stacked-seg" style="width:' + s.svc + '%;background:#22c55e" data-sector="' + labels.svc + ' ' + s.svc + '%"></div>';
+      h += '<div class="stacked-seg" style="width:' + s.trade + '%;background:#f59e0b" data-sector="' + labels.trade + ' ' + s.trade + '%"></div>';
+      h += '<div class="stacked-seg" style="width:' + s.other + '%;background:#8b8b96" data-sector="' + labels.other + ' ' + s.other + '%"></div>';
+      h += '</div></div>';
+    });
+    document.getElementById('chart5').innerHTML = h;
+  }
+
+  function bindSectorTooltip() {
+    var tip = document.getElementById('sector-tooltip');
+    var wrap = document.getElementById('chart5');
+    if (!wrap || !tip) return;
+    wrap.addEventListener('mouseover', function(ev) {
+      var seg = ev.target;
+      if (!seg.classList || !seg.classList.contains('stacked-seg')) return;
+      var text = seg.getAttribute('data-sector');
+      if (text) { tip.textContent = text; tip.classList.add('visible'); tip.style.left = (ev.pageX + 10) + 'px'; tip.style.top = (ev.pageY + 10) + 'px'; }
+    });
+    wrap.addEventListener('mouseout', function(ev) {
+      if (!ev.relatedTarget || !wrap.contains(ev.relatedTarget)) { tip.classList.remove('visible'); }
+    });
+    wrap.addEventListener('mousemove', function(ev) {
+      if (tip.classList.contains('visible')) { tip.style.left = (ev.pageX + 10) + 'px'; tip.style.top = (ev.pageY + 10) + 'px'; }
+    });
+  }
+
+  function bindFilters() {
+    document.getElementById('filter-chart1').onchange = function() { renderChart1(this.value); };
+    document.getElementById('filter-chart2').onchange = function() { renderLineChart('chart2', function(d,y) { return d.msme_gdp_pct[y]; }, this.value, 0, 100); };
+    document.getElementById('filter-chart3').onchange = function() { renderLineChart('chart3', function(d,y) { return d.msme_loan_pct[y]; }, this.value, 0, 100); };
+    document.getElementById('filter-chart4').onchange = function() { renderLineChart('chart4', function(d,y) { return d.msme_emp_pct[y]; }, this.value, 0, 100); };
+    document.getElementById('filter-chart5').innerHTML = DATA.map(function(d, i) { return '<option value="' + i + '">' + d.name + '</option>'; }).join('');
+    document.getElementById('filter-chart5').onchange = function() { renderChart5(+this.value); };
+    document.getElementById('filter-chart6').onchange = function() { renderLineChart('chart6', function(d,y) { return d.checking_pct[y]; }, this.value, 0, 100); };
+    document.getElementById('filter-chart7').onchange = function() { renderLineChart('chart7', function(d,y) { return d.bank_wc_pct[y]; }, this.value, 0, 100); };
+    document.getElementById('filter-chart8').onchange = function() { renderLineChart('chart8', function(d,y) { return d.electronic_pct[y]; }, this.value, 0, 100); };
+  }
+
+  document.getElementById('tabs').addEventListener('click', function(e) {
+    var btn = e.target;
+    if (btn.tagName !== 'BUTTON' || !btn.dataset.tab) return;
+    var tabId = btn.dataset.tab;
+    document.querySelectorAll('.tabs button').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.chart-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('panel' + tabId).classList.add('active');
+  });
+
+  document.getElementById('page-nav').addEventListener('click', function(e) {
+    var btn = e.target;
+    if (btn.tagName !== 'BUTTON' || !btn.dataset.page) return;
+    var pageId = btn.dataset.page;
+    document.querySelectorAll('.page-nav button').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('page-' + pageId).classList.add('active');
+  });
+
+  function init() {
+    updateExecSummary(2024);
+    renderChart1(2024);
+    renderLineChart('chart2', function(d,y) { return d.msme_gdp_pct[y]; }, 2024, 0, 100);
+    renderLineChart('chart3', function(d,y) { return d.msme_loan_pct[y]; }, 2024, 0, 100);
+    renderLineChart('chart4', function(d,y) { return d.msme_emp_pct[y]; }, 2024, 0, 100);
+    renderChart5(0);
+    renderLineChart('chart6', function(d,y) { return d.checking_pct[y]; }, 2024, 0, 100);
+    renderLineChart('chart7', function(d,y) { return d.bank_wc_pct[y]; }, 2024, 0, 100);
+    renderLineChart('chart8', function(d,y) { return d.electronic_pct[y]; }, 2024, 0, 100);
+    bindFilters();
+    bindSectorTooltip();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+  </script>
+</body>
+</html>

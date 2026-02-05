@@ -1,0 +1,18 @@
+{
+  "$schema": "Market landscape for Go-to-market strategy (2023-2024)",
+  "sources": {
+    "msme_macro": "ADB Asia SME Monitor 2025 - Part II: Country Reviews (Table 2, Table 3)",
+    "enterprise_finance": "World Bank Enterprise Surveys - Economy Data, Topic: Finance"
+  },
+  "countries": ["Malaysia", "Thailand", "Philippines"],
+  "indicators": [
+    { "id": "msme_gdp_m_usd", "label": "MSME GDP (M USD)", "source_table": "Table 2: MSME Landscape", "unit": "M USD" },
+    { "id": "msme_gdp_to_total_pct", "label": "MSME GDP to total (% to GDP)", "source_table": "Table 2", "unit": "%" },
+    { "id": "msme_loans_to_total_pct", "label": "MSME Loans to Total (%)", "source_table": "Table 3: MSME Financing", "unit": "%" },
+    { "id": "msme_employees_to_total_pct", "label": "MSME Employees to Total (%)", "source_table": "Table 2", "unit": "%" },
+    { "id": "msmes_by_sector", "label": "MSMEs by sector (%)", "source_table": "Table 2", "sub_indicators": ["Manufacturing", "Services", "Trade", "Others"] },
+    { "id": "pct_firms_checking_savings", "label": "% of firms with checking/savings account", "wb_indicator_id": 291, "topic": "Credit and Loans", "unit": "%" },
+    { "id": "pct_firms_bank_working_capital", "label": "% of firms using banks for working capital", "wb_indicator_id": 294, "topic": "Working Capital Financing", "unit": "%" },
+    { "id": "pct_payments_electronically", "label": "% of payments made electronically", "wb_indicator_id": 310, "topic": "Electronic Payments", "unit": "%" }
+  ]
+}

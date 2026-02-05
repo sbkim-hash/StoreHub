@@ -1,0 +1,40 @@
+.sources-footer {
+  margin-top: auto;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+}
+
+.sources-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sources-footer h3 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.sources-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sources-footer li {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.sources-footer strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.sources-footer .period {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}

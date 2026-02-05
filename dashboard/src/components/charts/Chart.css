@@ -1,0 +1,22 @@
+.chart-wrap {
+  min-height: 240px;
+}
+
+.chart-empty {
+  margin: 2rem 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.chart-bar .recharts-cartesian-grid-horizontal line,
+.chart-stacked .recharts-cartesian-grid-horizontal line {
+  stroke: var(--border);
+  strokeOpacity: 0.5;
+}
+
+.chart-bar .recharts-cartesian-grid-vertical line,
+.chart-stacked .recharts-cartesian-grid-vertical line {
+  stroke: var(--border);
+  strokeOpacity: 0.3;
+}
