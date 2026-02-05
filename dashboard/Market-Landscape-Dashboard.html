@@ -63,6 +63,62 @@
     .sector-tooltip.visible { display: block; }
 
     footer { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #2a2a30; font-size: 0.75rem; color: #8b8b96; }
+
+    .whyso-intro { margin-bottom: 1.25rem; font-size: 0.9rem; line-height: 1.5; color: #a0a0a8; }
+    .whyso-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .whyso-table th, .whyso-table td { border: 1px solid #2a2a30; padding: 0.75rem 1rem; text-align: left; vertical-align: top; background: #18181c; }
+    .whyso-table th { background: #1f1f24; color: #a5b4fc; font-weight: 600; min-width: 10rem; }
+    .whyso-table .row-label { min-width: 11rem; color: #8b8b96; font-weight: 500; }
+    .whyso-table .point { color: #e8e8ed; font-weight: 500; margin-bottom: 0.35rem; }
+    .whyso-table .detail { margin: 0; padding-left: 1rem; color: #a0a0a8; font-size: 0.8rem; line-height: 1.45; }
+    .whyso-table .detail li { margin-bottom: 0.2rem; }
+    .whyso-table .flag { font-size: 1.2rem; margin-right: 0.25rem; }
+    .whyso-table tr.section-row td { background: #1a1a20; color: #a5b4fc; font-weight: 600; padding: 0.5rem 1rem; border: 1px solid #2a2a30; }
+    .whyso-sources { margin-top: 1.25rem; padding: 0.9rem 1rem; background: rgba(99, 102, 241, 0.08); border-radius: 8px; border-left: 4px solid #6366f1; font-size: 0.78rem; color: #8b8b96; line-height: 1.5; }
+    .whyso-sources strong { color: #a5b4fc; }
+    .whyso-sources a { color: #818cf8; text-decoration: none; }
+    .whyso-sources a:hover { text-decoration: underline; }
+
+    .howto-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; padding: 0.5rem 0; border-bottom: 1px solid #2a2a30; }
+    .howto-tabs button { background: #18181c; color: #8b8b96; border: 1px solid #2a2a30; border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer; }
+    .howto-tabs button:hover { color: #e8e8ed; border-color: #3a3a42; }
+    .howto-tabs button.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+    .howto-panel { display: none; padding: 0.5rem 0; }
+    .howto-panel.active { display: block; }
+    .howto-bench-callout { background: rgba(99, 102, 241, 0.12); border-left: 4px solid #6366f1; border-radius: 0 8px 8px 0; padding: 0.9rem 1rem; margin-bottom: 1.25rem; font-size: 0.85rem; line-height: 1.55; }
+    .howto-bench-callout strong { color: #a5b4fc; }
+    .howto-bench-callout a { color: #818cf8; text-decoration: none; }
+    .howto-bench-callout a:hover { text-decoration: underline; }
+    .howto-bench-callout ul { margin: 0.35rem 0 0 1rem; padding-left: 0.5rem; }
+    .howto-bench-callout li { margin-bottom: 0.35rem; }
+    .howto-layout { margin-top: 1rem; overflow-x: auto; }
+    .howto-compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .howto-compare th, .howto-compare td { border: 1px solid #2a2a30; padding: 0.5rem 0.65rem; vertical-align: top; text-align: left; }
+    .howto-compare th { background: #1f1f24; color: #a5b4fc; font-weight: 600; }
+    .howto-compare th.step-col { width: 14rem; border-left: 2px solid #6366f1; }
+    .howto-compare td { background: #18181c; color: #e8e8ed; line-height: 1.45; }
+    .howto-compare td.step-cell { background: #1a1a20; color: #e8e8ed; font-size: 0.85rem; position: relative; padding-left: 1.5rem; border-left: 2px solid #6366f1; }
+    .howto-compare td.step-cell::before { content: ''; position: absolute; left: calc(-0.5rem - 4px); top: 0.5rem; width: 8px; height: 8px; border-radius: 50%; background: #6366f1; box-sizing: border-box; }
+    .howto-compare td.step-cell strong { color: #a5b4fc; font-weight: 600; }
+    .howto-compare td.group-cell { font-size: 0.75rem; font-weight: 600; color: #8b8b96; text-transform: uppercase; letter-spacing: 0.04em; background: #1a1a20; padding-left: 1rem; }
+    .howto-compare tr.merged td { background: #1a1a20; color: #8b8b96; font-style: italic; }
+    .howto-compare tr.merged td.step-cell { border-left: 2px solid #6366f1; }
+    .howto-compare ul { margin: 0; padding-left: 1rem; }
+    .howto-compare li { margin-bottom: 0.15rem; }
+    .howto-qr-ref { margin: 0.5rem 0 0 1rem; font-size: 0.7rem; color: #8b8b96; }
+    .howto-qr-ref a { color: #818cf8; text-decoration: none; }
+    .howto-qr-ref a:hover { text-decoration: underline; }
+    .howto-bench-customers { margin-top: 0.75rem; font-size: 0.82rem; line-height: 1.5; color: #a0a0a8; }
+    .howto-bench-customers strong { color: #a5b4fc; }
+    .howto-bench-customers ul { margin: 0.25rem 0 0 1rem; padding-left: 0.5rem; }
+    .howto-bench-customers li { margin-bottom: 0.2rem; }
+    .howto-cover-label, .howto-cover-list { color: #fef08a; }
+    .howto-cover-list .storehub-ref { color: #fef08a; }
+    .howto-highlight { background: rgba(234, 179, 8, 0.35); color: #fef08a; padding: 0.1em 0.2em; border-radius: 2px; cursor: help; }
+    .howto-tooltip-wrap { position: relative; }
+    .howto-tooltip-popup { display: none; position: absolute; z-index: 100; left: 0; top: 100%; margin-top: 4px; min-width: 280px; max-width: 360px; padding: 0.6rem 0.75rem; font-size: 0.78rem; line-height: 1.45; color: #e8e8ed; background: #1f1f24; border: 1px solid #3a3a42; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); white-space: normal; }
+    .howto-tooltip-wrap:hover .howto-tooltip-popup { display: block; }
+    .howto-tooltip-popup .storehub { color: #fef08a; margin-top: 0.35rem; }
   </style>
 </head>
 <body>
@@ -70,7 +126,6 @@
     <header>
       <div>
         <h1>StoreHub - GTM Strategy</h1>
-        <p>Go-to-Market 전략 수립 · 20개국 (2023–2024)</p>
       </div>
       <nav class="page-nav" id="page-nav">
         <button type="button" class="active" data-page="whereto">Where to</button>
@@ -212,16 +267,306 @@
     </div>
 
     <div id="page-whyso" class="page">
+      <div class="exec-summary" role="region" aria-label="Executive summary">
+        <strong>Executive summary</strong><br>
+        세 국가는 공통적으로 1) 법인카드 발행 시 요구되는 까다롭고 복잡한 프로세스 (감사보고서 및 은행 거래내역 제출, 담보 기반 한도 설정 등), 2) 높은 수수료 및 느린 정산 속도로 인한 경제성 리스크로 법인카드 사용률이 낮다.
+      </div>
       <div class="chart-card">
         <h3>Why so</h3>
-        <p class="desc">내용을 추가할 수 있습니다.</p>
+        <p class="desc">국가별 MSME 법인카드 침투율 저하 원인 · x축: 태국·말레이시아·필리핀, y축: Banking/Economic Barriers</p>
+        <table class="whyso-table" role="grid" aria-label="국가별 MSME 법인카드 침투율 저하 원인">
+          <thead>
+            <tr>
+              <th class="row-label">항목</th>
+              <th scope="col">태국</th>
+              <th scope="col">말레이시아</th>
+              <th scope="col">필리핀</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="section-row">
+              <td colspan="4">A. Bank barrier</td>
+            </tr>
+            <tr>
+              <td class="row-label"><strong>A-1.</strong> 법인카드 발행 시 증빙 요건</td>
+              <td>
+                <div class="point"> 감사·재무 증빙 문턱으로 영세 SME 발급 제한</div>
+                <ul class="detail">
+                  <li>법인카드·신용 한도 신청 시 감사보고서·재무제표 등 공식 증빙을 요구하는 은행이 많음.</li>
+                  <li>보고서 체계가 미비한 소규모·미세기업은 발급 자체가 어렵거나 한도가 매우 낮게 책정됨.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 2~3개년 감사보고서(Audited Financials) 요구로 발급 문턱 상승</div>
+                <ul class="detail">
+                  <li>감사 면제 대상 소규모 법인(PD10-2024 기준)은 보고서가 없어 발급을 못하는 사례 다수.</li>
+                  <li>Data 인프라·금융 교육 부족이 시장 기반 금융 접근을 더욱 제한함.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 3개년 감사보고서·은행 거래내역 등 증빙으로 SME 발급 제한</div>
+                <ul class="detail">
+                  <li>신용 한도·체크 디스카운트 등에 과거 3개년 AFS(Audited Financial Statements) 요구.</li>
+                  <li>P5MM 이하/이상에 따라 3개월/6개월 은행 거래내역 등 추가 서류 요구로 영세 SME 부담 큼.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label"><strong>A-2.</strong> 법인카드 한도 설정</td>
+              <td>
+                <div class="point"> 부동산·예금 담보 중심 한도로 영세 SME 발급 불가 다수</div>
+                <ul class="detail">
+                  <li>한도 설정 시 기업의 미래 가치보다 현재 부동산·예금 담보를 중시하는 관행이 있음.</li>
+                  <li>ttb sme smart biz·카시콘 상업대출 등도 부동산·기계·예금 담보 기반 한도가 일반적.</li>
+                  <li>담보가 없는 영세 SME는 법인카드 발급·한도 승인 자체가 어려운 경우가 많음.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 담보·재무 증빙 기반 한도로 성장 자본 접근 제한</div>
+                <ul class="detail">
+                  <li>법인카드·신용 한도 설정 시 2~3개년 Audited Financials 요구 등 높은 증빙 문턱이 일반적.</li>
+                  <li>성장 자본(growth capital) 수요에 대한 “missing middle” 현상이 지적됨.</li>
+                  <li>담보·공식 재무 데이터 기반 한도 설정으로, 데이터가 부족한 SME는 한도·발급이 제한됨.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 담보·재무 증빙 기반 한도로 소규모 기업 한도 낮음</div>
+                <ul class="detail">
+                  <li>AFS·은행 거래내역 등 증빙이 충분하지 않은 SME는 한도가 낮게 설정되거나 거절됨.</li>
+                  <li>담보·공식 재무 기록이 부족한 MSME가 법인카드로 운영자금을 쓰기 어려운 구조.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label"><strong>A-3.</strong> 물리적 접근성</td>
+              <td>
+                <div class="point"> 도시 중심 지점 배치로 농촌·소도시 접근 제한</div>
+                <ul class="detail">
+                  <li>법인카드는 오프라인 발급·서류 제출이 많은데, 지점이 도시 중심이라 접근이 제한되는 지역 존재.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 지점·오프라인 발급 의존으로 접근성 격차 존재</div>
+                <ul class="detail">
+                  <li>법인카드 발급·한도 변경 등에 지점 방문·실물 서류 제출이 필요해, 지리적·시간적 부담이 있음.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 법인카드 오프라인 발급·섬 지역으로 은행 접근 어려움</div>
+                <ul class="detail">
+                  <li>법인카드는 오프라인으로만 발급되는 경우가 많고, 7,600여 개 섬의 지리적 특성상 지점 방문이 어려움.</li>
+                  <li>전체 시군 중 15.5%는 은행이 없고, 성인 금융가입률 56%로 태국(95.5%)·말레이시아(88.3%)보다 낮음.</li>
+                  <li>실물 서류 제출 프로세스가 복잡해 섬·농촌 SME의 법인카드 발급 비용이 큼.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="section-row">
+              <td colspan="4">B. Economic barrier</td>
+            </tr>
+            <tr>
+              <td class="row-label"><strong>B-1.</strong> 수수료</td>
+              <td>
+                <div class="point"> 신용카드 MDR 2.5~4% vs PromptPay 0.8~1.5%·무료</div>
+                <ul class="detail">
+                  <li>신용카드: MDR 약 2.5~4%(카드사·게이트웨이 포함).</li>
+                  <li>PromptPay QR: 소상공인 게이트웨이 수수료 0.8~1.5% 수준, 2018년 이후 다수 은행이 디지털 결제 수수료 면제.</li>
+                  <li>소비자 PromptPay 5,000바트 이하는 무료, 그 이상도 2~10바트 수준으로 극소액.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 신용카드 MDR(인터체인지 상한 0.60% 등) vs DuitNow QR 0.25~0.5%</div>
+                <ul class="detail">
+                  <li>신용카드: 인터체인지 상한 0.60%(BNM), 실제 MDR은 여기에 가맹점 수수료 등이 더해져 더 높음.</li>
+                  <li>DuitNow QR: 직불 0.25% MDR, 신용 0.5% MDR(2023년 10월부터 부과). 미소·소규모 사업자 상당수 면제.</li>
+                  <li>소비자 DuitNow 이체·QR 사용 무료.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 신용카드 MDR vs InstaPay/PESONet 소액·저비용</div>
+                <ul class="detail">
+                  <li>신용카드: MDR이 게이트웨이·카드사에 따라 2~3%대 이상으로 부담.</li>
+                  <li>InstaPay: 소비자 이체당 P8~P25 수준(BSP 수수료 동결). PESONet P5~P500(금액 구간별).</li>
+                  <li>RTP·QR 결제는 신용카드 대비 상대적으로 저비용이라 MSME가 카드 수취 대신 선호.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="row-label"><strong>B-2.</strong> 정산 속도</td>
+              <td>
+                <div class="point"> 신용카드 T+1~T+3 vs PromptPay 실시간(수 초)</div>
+                <ul class="detail">
+                  <li>신용카드 매입: 정산 일반적으로 T+1~T+3 영업일(가맹점·어큐어러 계약에 따라 2~3일·7일 등).</li>
+                  <li>PromptPay: 실시간 정산, 결제 후 수 초 내 계좌 입금. 당일 자금 회전 가능.</li>
+                  <li>MSME의 현금 흐름 선호와 괴리로 법인카드 수취 동기 감소.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 신용카드 T+1~T+3 vs DuitNow 실시간(즉시)</div>
+                <ul class="detail">
+                  <li>신용카드 매입: T+1~T+3 영업일 정산이 일반적. 배치 처리·영업일 기준으로 지연 발생.</li>
+                  <li>DuitNow: 즉시 이체·실시간 정산, 24/7. 수 초 내 입금 완료.</li>
+                  <li>MSME가 매출 즉시 회전을 선호해 카드 정산 주기 괴리가 수취 기피 요인으로 작용.</li>
+                </ul>
+              </td>
+              <td>
+                <div class="point"> 신용카드 T+1~T+3 vs InstaPay 실시간·PESONet 당일 3회</div>
+                <ul class="detail">
+                  <li>신용카드 매입: T+1~T+3 영업일 정산 일반적.</li>
+                  <li>InstaPay: 24/7 실시간 정산, 수 초 내 입금. PESONet 3MBS: 10:00·13:00·16:00 정산, 당일 2시간 내 입금.</li>
+                  <li>당일 자금 회전 니즈와 괴리로 법인카드 수취 동기 감소.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="whyso-sources">
+          <strong>리서치 소스</strong>
+          <ul style="margin: 0.35rem 0 0 1rem; padding-left: 0.5rem;">
+            <li>ADB, <em>Asia SME Monitor 2025</em>, <a href="https://www.adb.org/sites/default/files/publication/1096981/asia-sme-monitor-2025.pdf" target="_blank" rel="noopener">https://www.adb.org/sites/default/files/publication/1096981/asia-sme-monitor-2025.pdf</a> (정량 데이터·ASEAN SME 금융 접근)</li>
+            <li>ERIA / ASEAN, <em>SME Policy Index: ASEAN 2024 – Enabling Sustainable Growth and Digitalisation</em>, <a href="https://www.eria.org/uploads/ASPI_2024-Full_report-upload-25Sep.pdf" target="_blank" rel="noopener">eria.org</a>, <a href="https://asean.org/wp-content/uploads/2024/09/Full-Report_ASEAN-SME-Policy-Index-2024_20-Sept-2024.pdf" target="_blank" rel="noopener">asean.org</a> (ASEAN SME 금융·디지털화 정책)</li>
+            <li>Philippines: BSP Financial Inclusion Dashboard (2023), McKinsey “Philippines’ unmet banking needs”, CBS check discounting·AFS 요건, InstaPay/PESONet 3MBS (BSP·Maya·TransFi 등)</li>
+            <li>Malaysia: SSM PD10-2024 Audit Exemption, MAICSA, ICMR <em>SME Financing Report</em>; PayNet·The Edge “DuitNow QR MDR”, BNM interchange fee</li>
+            <li>Thailand: TTB SME Smart Biz·Corporate Card, Kasikornbank Commercial Loan, Business Collateral Act; PaymentsCMI “Payment method transaction fees across Southeast Asia”, DuitNow cross-border; BOT PromptPay, paymentproviders.io·antom “PromptPay in Thailand” (MDR 2.5~4% vs 0.8~1.5%)</li>
+            <li>B-1 수수료: PaymentsCMI <a href="https://paymentscmi.com/insights/payment-method-transaction-fees-across-southeast-asia/" target="_blank" rel="noopener">Comparing Payment Method Transaction Fees Across Southeast Asia</a>; Vulcan Post·PayNet “DuitNow QR MDR” (0.25%/0.5%); BSP InstaPay/PESONet 수수료 동결; Curlec “Merchant Discount Rates Malaysia”</li>
+            <li>B-2 정산: Chargebacks911·Bank of America “Transaction Settlement”; Stripe “Payment settlement”; DuitNow·PromptPay·InstaPay 실시간 정산; BSP PESONet 3MBS(1일 3회)</li>
+            <li>ASEAN RTP: Nextrade “Southeast Asia Real-Time Payments”, GFTN/ADB real-time payments·financial access, AMRO cross-border payments</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <div id="page-howto" class="page">
       <div class="chart-card">
         <h3>How to</h3>
-        <p class="desc">내용을 추가할 수 있습니다.</p>
+        <p class="desc">국가별 전략 · 탭을 선택하면 해당 국가 내용을 볼 수 있습니다.</p>
+        <nav class="howto-tabs" id="howto-tabs" role="tablist">
+          <button type="button" class="active" data-howto-country="thailand" role="tab" aria-selected="true">태국</button>
+          <button type="button" data-howto-country="malaysia" role="tab" aria-selected="false">말레이시아</button>
+          <button type="button" data-howto-country="philippines" role="tab" aria-selected="false">필리핀</button>
+        </nav>
+        <div id="howto-panel-thailand" class="howto-panel active" role="tabpanel">
+          <div class="howto-bench-callout">
+            <strong>벤치마킹 QR 업체</strong>
+            <ul>
+              <li><strong>PromptPay</strong> : 태국 중앙은행(BOT) 실시간 결제·QR 인프라 (<a href="https://www.bot.or.th/en/financial-innovation/digital-finance/digital-payment/promptpay.html" target="_blank" rel="noopener">website</a>)</li>
+            </ul>
+            <div class="howto-bench-customers">
+              <strong>PromptPay 주요 고객:</strong>
+              <ul>
+                <li>DBD(기업개발청) 등록 법인(Juristic Person)</li>
+                <li>중소기업(SME)·이커머스 기업</li>
+                <li>13자리 법인등록번호로 은행 계좌 연동 후 송·수금하는 기업</li>
+              </ul>
+              <strong class="howto-cover-label">StoreHub 커버 가능 고객:</strong>
+              <ul class="howto-cover-list">
+                <li>개인 사업자를 법인으로 전환한 초 영세 기업</li>
+                <li>오프라인 식당/카페, 배송, 출장 서비스 업체 등 PromptPay 네트워크 밖 업종</li>
+              </ul>
+            </div>
+          </div>
+          <div class="howto-layout">
+            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs PromptPay">
+              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>PromptPay</th></tr></thead>
+              <tbody>
+                <tr><td class="group-cell" colspan="3">Admin onboarding</td></tr>
+                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증(SSM), 이사회 결의서 제출</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">DBD(기업개발청) 등록 법인이 13자리 법인등록번호(Juristic ID)로 은행 계좌 연동 신청. 서류 제출 후 SMS 승인.</span><span class="howto-tooltip-popup" role="tooltip">단, 법인 계좌 연동을 위해 여전히 은행 서류 작업 필요.<br><span class="storehub">⇒ StoreHub: 태국 중앙은행(BOT)의 라이선스를 가진 결제 대행사(e-Money 또는 Payment Agent)와 파트너십을 맺거나 자체 라이선스를 활용하여 추가 서류 없이 즉시 개시</span></span></span> Corporate PromptPay로 비즈니스 송·수금 가능</li></ul><p class="howto-qr-ref">참고: <a href="https://www.bangkokbank.com/en/Business-Banking/Manage-My-Business/BizPromptPay" target="_blank" rel="noopener">Bangkok Bank BizPromptPay</a>, <a href="https://www.bot.or.th/en/financial-innovation/digital-finance/digital-payment/promptpay.html" target="_blank" rel="noopener">BOT PromptPay</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>은행 계좌 잔액(Deposit) 내에서 이체·결제. 별도 신용 한도 없음. 관리자가 계좌 한도 내에서 직원·용도별 이체 금액 할당</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>별도 신용 심사 없음. 계좌 기반(Cash-based)이므로 즉시 승인.</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li>실물 카드 없음. 직원에게 PromptPay(휴대폰·ID 연동)로 송금하거나, 법인 계좌에서 QR·이체로 즉시 결제 권한 부여</li></ul><p class="howto-qr-ref">참고: <a href="https://www.scb.co.th/en/corporate-banking/business-cash-management/scb-business-collection/scb-business-promptpay" target="_blank" rel="noopener">SCB Business PromptPay</a></p></td></tr>
+                <tr><td class="group-cell" colspan="3">Employee Expense</td></tr>
+                <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="2">식대, 비품 구매, 교통비 등 현장 지출 발생. (공통)</td></tr>
+                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li>상점의 PromptPay QR을 스캔하거나 법인 번호로 결제. 회사 계좌에서 직접 이체. 직원은 본인 PromptPay로 수령 후 결제하거나 법인 계좌 연동으로 회사 돈으로 결제</li></ul><p class="howto-qr-ref">참고: <a href="https://www.bot.or.th/en/financial-innovation/digital-finance/digital-payment/promptpay.html" target="_blank" rel="noopener">BOT PromptPay</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">이체·결제 내역이 은행·앱에 디지털 기록으로 자동 저장. E-receipt 형태로 보관 가능</span><span class="howto-tooltip-popup" role="tooltip">단, 직원이 PromptPay로 결제하면 E-receipt이 갤러리에 저장되고, 이걸 라인(Line) 메신저로 CEO께 송부하여, CEO가 수백 장의 사진을 보고 수동으로 장부를 적어야 함.<br><span class="storehub">⇒ StoreHub: 직원이 StoreHub 앱으로 PromptPay QR을 찍는 순간, E-receipt 절차 없이 결제 상세 데이터(시간, 장소, 금액, 승인번호)가 즉시 재무 대시보드로 자동 전송</span></span></span></li></ul></td></tr>
+                <tr><td class="group-cell" colspan="3">Back-office</td></tr>
+                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 축소. 결제 데이터가 은행·채널에 실시간 기록되어 관리자에게 공유됨. 별도 청구서 제출 불필요</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li>사전 설정된 한도와 카테고리 내 지출이므로 자동 승인 또는 실시간 모니터링</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>회사 계좌에서 상인에게 실시간 직접 이체되었으므로 환급할 필요 없음. 직원 자금 압박 없음</li></ul></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="howto-panel-malaysia" class="howto-panel" role="tabpanel">
+          <div class="howto-bench-callout">
+            <strong>벤치마킹 QR 업체</strong>
+            <ul>
+              <li><strong>Touch'n Go (eWallet)</strong> : 말레이시아 대표 이월렛·QR 결제 (<a href="https://www.touchngo.com.my/ewallet" target="_blank" rel="noopener">website</a>)</li>
+            </ul>
+            <div class="howto-bench-customers">
+              <strong>주요 고객:</strong>
+              <ul>
+                <li>SME(SSM 등록): 소매, 카페, 식당, 호텔 등</li>
+                <li>Individual Traders(SSM 없이 NRIC 등록): 소규모 점포, 온라인 판매자</li>
+                <li>P2P·부업: 재택 판매자, 프리랜서 등 (TNG Digital Business Account 대상)</li>
+                <li>마이크로 MSME·노점·비공식 판매자(호커 등) 포함, 70만 이상 가맹점 보유</li>
+              </ul>
+              <strong class="howto-cover-label">StoreHub 커버 가능 고객:</strong>
+              <ul class="howto-cover-list">
+                <li>제조·물류·B2B 도매 등 TNG 가맹점 네트워크 밖 업종</li>
+                <li>LHDN·e-Invoice 연동이 필수인 세무 증빙 체계가 있는 중대형 기업</li>
+              </ul>
+            </div>
+          </div>
+          <div class="howto-layout">
+            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs Touch'n Go">
+              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>Touch'n Go (eWallet)</th></tr></thead>
+              <tbody>
+                <tr><td class="group-cell" colspan="3">Admin onboarding</td></tr>
+                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증(SSM), 이사회 결의서 제출</li></ul></td><td><ul><li>앱에서 사업자 번호(SSM) 인증만으로 비즈니스 프로필 생성. 가맹점 등록은 서류 없이 약 30분 내 완료 가능(TNG Merchant)</li></ul><p class="howto-qr-ref">참고: <a href="https://www.touchngo.com.my/merchant/be-a-merchant/" target="_blank" rel="noopener">Be a Merchant (TNG)</a>, <a href="https://www.tngdigital.com.my/business" target="_blank" rel="noopener">TNG Digital Business</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>관리자가 기업 계좌·이월렛 잔액(Deposit) 내에서 각 직원 앱으로 보낼 금액을 직접 할당</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>별도 신용 심사 없음. 계좌 기반(Cash-based)이므로 즉시 승인.</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li>직원 휴대폰으로 디지털 카드/권한 즉시 발급. 직원은 TNG 앱에서 법인 모드(Company Wallet) 활성화</li></ul><p class="howto-qr-ref">참고: <a href="https://www.touchngo.com.my/ewallet" target="_blank" rel="noopener">Touch'n Go eWallet</a></p></td></tr>
+                <tr><td class="group-cell" colspan="3">Employee Expense</td></tr>
+                <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="2">식대, 비품 구매, 교통비 등 현장 지출 발생. (공통)</td></tr>
+                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">상점의 DuitNow QR을 스캔할 때 결제 수단을 Company Wallet으로 선택하여 회사 돈으로 결제</span><span class="howto-tooltip-popup" role="tooltip">단, 직원이 그 돈을 점심을 먹는 데 쓰는지, 편의점에서 개인 물품을 사는지 사장은 결제가 끝난 뒤에 모니터링 가능.<br><span class="storehub">⇒ StoreHub: '가맹점 업종 제한(MCC Filtering)' 기능을 제공해 특정 카테고리 업장(주유소, 식당 등)에만 결제 가능하도록 사전 설정</span></span></span></li></ul><p class="howto-qr-ref">참고: <a href="https://www.duitnow.my/" target="_blank" rel="noopener">DuitNow</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 앱 내에 디지털 영수증(E-receipt) 자동 생성 및 저장</span><span class="howto-tooltip-popup" role="tooltip">단, 결제 시 App에 기록은 남지만, 국세청(LHDN) 시스템과 연동된 정식 비즈니스 지출 증빙이 되지는 않아, CEO가 연말에 내역들을 일일이 세무용 영수증으로 다시 변환해야 함.<br><span class="storehub">⇒ StoreHub : 결제와 동시에 정부 규격에 맞는 e-Invoice 실시간 생성</span></span></span></li></ul></td></tr>
+                <tr><td class="group-cell" colspan="3">Back-office</td></tr>
+                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 삭제. 결제 데이터가 중앙 대시보드에 실시간으로 기록되어 관리자에게 공유됨</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li>사전 설정된 한도와 카테고리 내 지출이므로 자동 승인 또는 실시간 모니터링</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>회사 예치금에서 상인에게 실시간으로 직접 지불되었으므로 환급할 필요 없음</li></ul></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="howto-panel-philippines" class="howto-panel" role="tabpanel">
+          <div class="howto-bench-callout">
+            <strong>벤치마킹 QR 업체</strong>
+            <ul>
+              <li><strong>GCash (Mobile Money)</strong> : 필리핀 모바일 머니·금융 슈퍼앱 (<a href="https://www.gcash.com/" target="_blank" rel="noopener">website</a>)</li>
+            </ul>
+            <div class="howto-bench-customers">
+              <strong>GCash 주요 고객:</strong>
+              <ul>
+                <li>단일 점포 상인</li>
+                <li>개인 소비자 등</li>
+              </ul>
+              <strong class="howto-cover-label">StoreHub 커버 가능 고객:</strong>
+              <ul class="howto-cover-list">
+                <li>멀티 로케이션 다점포 사업자</li>
+                <li>배송, 현장 서비스 업체 등</li>
+              </ul>
+            </div>
+          </div>
+          <div class="howto-layout">
+            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs GCash">
+              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>GCash (Mobile Money)</th></tr></thead>
+              <tbody>
+                <tr><td class="group-cell" colspan="3">Admin onboarding</td></tr>
+                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증(SSM), 이사회 결의서 제출</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">GCash for Business 가입(Starter/Premium/Pro). 완전 검증(12개월) 계정 기준, 앱에서 사업자 정보로 비즈니스 월렛 생성. 서류·설정만으로 온라인 신청 가능.</span><span class="howto-tooltip-popup" role="tooltip">단, 비즈니스 계정(GCash for Business) 승인에 수주~수개월 소요. 영세 SME는 승인 거절 잦음<br><span class="storehub">⇒ StoreHub: StoreHub POS 사용 이력이 있다면 신용 심사 없이 즉시 법인 지출 모드 활성화</span></span></span></li></ul><p class="howto-qr-ref">참고: <a href="https://www.gcash.com/business" target="_blank" rel="noopener">GCash for Business</a>, <a href="https://business.gcash.com/login" target="_blank" rel="noopener">Business Portal</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>기업 월렛 한도(Starter P250K~Pro 무제한) 내에서 관리자가 직원·용도별 할당. FDS(Fund Disbursement Service)로 실시간 지급 가능</li></ul><p class="howto-qr-ref">참고: <a href="https://help.gcash.com/hc/en-us/articles/15769253153177-Funds-Disbursement-Service-via-GCash-Biz" target="_blank" rel="noopener">FDS via GCash Biz</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>별도 신용 심사 없음. 월렛·계좌 기반이므로 즉시 승인.</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li>직원 휴대폰으로 GCash 앱·디지털 권한 즉시 발급. 직원은 GCash 앱에서 회사 월렛/법인 모드 활성화</li></ul></td></tr>
+                <tr><td class="group-cell" colspan="3">Employee Expense</td></tr>
+                <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="2">식대, 비품 구매, 교통비 등 현장 지출 발생. (공통)</td></tr>
+                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li>상점 QR 스캔 시 GCash for Business 월렛(회사 돈)으로 결제. In-Store QR·Webpay 등으로 회사 계정에서 직접 결제</li></ul><p class="howto-qr-ref">참고: <a href="https://help.gcash.com/hc/en-us/articles/900006198423-GCash-for-Business-Scan-to-Pay-with-In-store-QR" target="_blank" rel="noopener">In-Store QR</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 앱 내 디지털 영수증(E-receipt) 자동 생성·저장. SoundPay(즉시 알림)·거래 내역으로 추적</span><span class="howto-tooltip-popup" role="tooltip">단, 결제 후 SMS나 앱 내 내역만 남음. 영수증 이미지 관리가 파편화되어 세무 증빙 시 누락 발생<br><span class="storehub">⇒ StoreHub: 결제 즉시 디지털 영수증이 클라우드 대시보드에 자동 저장하여 분실 리스크 0%</span></span></span></li></ul></td></tr>
+                <tr><td class="group-cell" colspan="3">Back-office</td></tr>
+                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 삭제. 결제 데이터가 중앙 포털·대시보드에 실시간 기록되어 관리자에게 공유됨</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li>한도·카테고리 내 지출은 자동 승인 또는 실시간 모니터링. 거래 추적·알림으로 관리 용이</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>회사 월렛에서 상인·직원에게 실시간 직접 지불되었으므로 환급 불필요. PESONet 등으로 은행 이체 시 무료·저비용</li></ul></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -421,6 +766,21 @@
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('page-' + pageId).classList.add('active');
   });
+
+  var howtoTabs = document.getElementById('howto-tabs');
+  if (howtoTabs) {
+    howtoTabs.addEventListener('click', function(e) {
+      var btn = e.target;
+      if (btn.tagName !== 'BUTTON' || !btn.dataset.howtoCountry) return;
+      var country = btn.dataset.howtoCountry;
+      document.querySelectorAll('.howto-tabs button').forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.howto-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('howto-panel-' + country);
+      if (panel) panel.classList.add('active');
+    });
+  }
 
   function init() {
     updateExecSummary(2024);
