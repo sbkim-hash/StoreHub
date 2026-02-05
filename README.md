@@ -1,9 +1,25 @@
-# Market Landscape Dashboard
+# StoreHub - GTM Strategy
 
 Go-to-Market 전략 수립을 위한 **Market Landscape** 분석 대시보드입니다.  
-MSME 거시경제 지표와 기업 금융 행태 지표를 국가별로 시각화합니다.
+MSME 거시경제 지표와 기업 금융 행태 지표를 20개국 기준으로 시각화합니다.
 
-## 포함 국가
+## GitHub에 푸시하기
+
+저장소가 이미 초기화되어 있고 첫 커밋이 완료된 상태입니다. GitHub에 올리려면:
+
+1. [GitHub](https://github.com/new)에서 새 저장소(Repository)를 만듭니다. (이름 예: `StoreHub-GTM`)
+2. 터미널에서 프로젝트 폴더로 이동한 뒤 아래를 실행합니다.
+
+```bash
+git remote add origin https://github.com/본인아이디/저장소이름.git
+git branch -M main
+git push -u origin main
+```
+
+- 이미 `origin`이 있다면 `git remote set-url origin https://github.com/...` 로 주소만 바꿀 수 있습니다.
+- 기본 브랜치가 `master`라면 `git push -u origin master` 로 푸시하면 됩니다.
+
+## 포함 국가 (20개국)
 
 - **Malaysia**, **Thailand**, **Philippines** (필수 3국)
 - 필요 시 `data/market-landscape.json`에 국가를 추가할 수 있습니다.
