@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Single-file build: 서버 없이 브라우저에서 바로 열기 가능 (file://). 외부 CSS/JS 없음. -->
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -70,6 +71,22 @@
     .stacked-seg:hover { opacity: 0.9; }
     .sector-tooltip { position: fixed; background: #1f1f24; border: 1px solid #3a3a42; border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.8rem; color: #e8e8ed; z-index: 100; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); display: none; white-space: nowrap; }
     .sector-tooltip.visible { display: block; }
+    .segmentation-pie-wrap { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .segmentation-pie-container { width: 380px; height: 380px; position: relative; flex-shrink: 0; }
+    .segmentation-pie-container svg { width: 100%; height: 100%; }
+    .segmentation-pie-container path.seg-slice { cursor: pointer; transition: opacity 0.15s; }
+    .segmentation-pie-container path.seg-slice:hover { opacity: 0.9; }
+    .segmentation-legend { flex: 1; min-width: 200px; padding: 0.5rem 0; }
+    .segmentation-legend h4 { margin: 0 0 0.5rem; font-size: 0.85rem; color: #a5b4fc; }
+    .seg-subtitle { margin: 1.25rem 0 0.2rem; font-size: 0.95rem; font-weight: 700; color: #e8e8ed; }
+    .segmentation-legend ul { margin: 0; padding-left: 1.25rem; font-size: 0.8rem; color: #e8e8ed; line-height: 1.6; }
+    .segmentation-legend li { margin-bottom: 0.25rem; }
+    .segmentation-legend .pct { color: #a5b4fc; font-weight: 600; }
+    .thailand-map-wrap { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .thailand-map-container { width: 360px; height: 420px; position: relative; flex-shrink: 0; }
+    .thailand-map-container svg { width: 100%; height: 100%; }
+    .thailand-map-container path.region-path { cursor: pointer; transition: opacity 0.15s; stroke: #2a2a30; stroke-width: 1; }
+    .thailand-map-container path.region-path:hover { opacity: 0.9; }
 
     footer { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #2a2a30; font-size: 0.75rem; color: #8b8b96; }
 
@@ -253,9 +270,14 @@
       </div>
       <div class="tabs-row">
         <span class="tabs-label">Finance index:</span>
-        <button type="button" data-tab="6">6. % checking/saving account</button>
-        <button type="button" data-tab="7">7. % banks for working capital</button>
-        <button type="button" data-tab="8">8. % of payments electronically</button>
+        <button type="button" data-tab="6">4. % bank account</button>
+        <button type="button" data-tab="7">5. % bank for working capital</button>
+        <button type="button" data-tab="8">6. % of payment electronically</button>
+      </div>
+      <div class="tabs-row">
+        <span class="tabs-label">Segmentation:</span>
+        <button type="button" data-tab="seg-thailand">Thailand</button>
+        <button type="button" data-tab="seg-malaysia">Malaysia</button>
       </div>
     </nav>
 
@@ -295,8 +317,8 @@
 
     <div id="panel6" class="chart-panel">
       <div class="chart-card">
-        <h3>6) % of firms with checking/savings account</h3>
-        <p class="desc">20개국 (Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
+        <h3>4) % bank account</h3>
+        <p class="desc">21개국 (Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
         <div class="chart-filter">
           <select id="filter-chart6">
             <option value="2023">2023년</option>
@@ -309,8 +331,8 @@
 
     <div id="panel7" class="chart-panel">
       <div class="chart-card">
-        <h3>7) % of firms using banks for working capital</h3>
-        <p class="desc">20개국 (Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
+        <h3>5) % bank for working capital</h3>
+        <p class="desc">21개국 (Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
         <div class="chart-filter">
           <select id="filter-chart7">
             <option value="2023">2023년</option>
@@ -323,8 +345,8 @@
 
     <div id="panel8" class="chart-panel">
       <div class="chart-card">
-        <h3>8) % of payments made electronically</h3>
-        <p class="desc">20개국 (Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
+        <h3>6) % of payment electronically</h3>
+        <p class="desc">21개국 (Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
         <div class="chart-filter">
           <select id="filter-chart8">
             <option value="2023">2023년</option>
@@ -332,6 +354,42 @@
           </select>
         </div>
         <div class="chart-wrap line-chart-wrap" id="chart8"></div>
+      </div>
+    </div>
+
+    <div id="panelseg-thailand" class="chart-panel">
+      <div class="chart-card">
+        <h3>By industry sector</h3>
+        <p class="desc">MSME GDP by sector (% share) 2024 · ADB data.adb.org Table 2_THA row 47~</p>
+        <div class="segmentation-pie-wrap">
+          <div class="segmentation-pie-container" id="chart-seg-thailand"></div>
+          <div class="segmentation-legend" id="chart-seg-thailand-legend"></div>
+        </div>
+        <h3 class="seg-subtitle">By region</h3>
+        <p class="desc">MSME by region (% share) 2024 · ADB Table 2_THA row 21~</p>
+        <div class="thailand-map-wrap">
+          <div class="thailand-map-container" id="chart-thailand-region"></div>
+          <div class="segmentation-legend" id="chart-thailand-region-legend"></div>
+        </div>
+        <p class="desc" style="margin-top:0.5rem;"><strong>데이터 출처</strong> ADB <a href="https://data.adb.org/media/14526/download" target="_blank" rel="noopener">data.adb.org (14526)</a> · Table 2_THA</p>
+      </div>
+    </div>
+
+    <div id="panelseg-malaysia" class="chart-panel">
+      <div class="chart-card">
+        <h3>By industry sector</h3>
+        <p class="desc">Table 5 Value Added of MSMEs by Kind of Economic Activity at Current Prices (2024) · DOSM MSMEs Performance 2024 · 전체 MSME GDP 대비 % · 마우스 오버 시 세부 업종명 표시</p>
+        <div class="segmentation-pie-wrap">
+          <div class="segmentation-pie-container" id="chart-seg-malaysia"></div>
+          <div class="segmentation-legend" id="chart-seg-malaysia-legend"></div>
+        </div>
+        <h3 class="seg-subtitle">By region</h3>
+        <p class="desc">MSMEs by region (% share) 2023 · ADB 2024 Asia SME Monitor - MAL Table 2_MAL row 23~</p>
+        <div class="thailand-map-wrap">
+          <div class="thailand-map-container" id="chart-malaysia-region"></div>
+          <div class="segmentation-legend" id="chart-malaysia-region-legend"></div>
+        </div>
+        <p class="desc" style="margin-top:0.5rem;"><strong>데이터 출처</strong> DOSM, Micro Small &amp; Medium Enterprises (MSMEs) Performance 2024 · <a href="https://www.dosm.gov.my/portal-main/release-content/micro-small--medium-enterprises-msmes-performance-2024" target="_blank" rel="noopener">Table Micro, Small &amp; Medium Enterprise (MSMEs) Performance 2024</a> (Sheet 5: Value Added by Kind of Economic Activity - RM Million)</p>
       </div>
     </div>
 
@@ -794,12 +852,12 @@
   ];
   var MSME_DATA = MSME_RAW.slice();
 
+  // MSME GDP 상위 20%: Micro=1, Small=4, Medium=7 / 하위 80%: Micro=1, Small=3, Medium=5 (동일 규칙 적용)
   function getContributionWeights(idx, totalContrib) {
     var n = totalContrib;
-    var rankPct = (n - idx) / n * 100;
-    if (rankPct <= 50) return { micro: 1.0, small: 3.0, medium: 7.0 };
-    if (rankPct <= 80) return { micro: 1.0, small: 4.0, medium: 8.5 };
-    return { micro: 1.0, small: 5.0, medium: 10.0 };
+    var isTop20 = idx < n * 0.2;
+    if (isTop20) return { micro: 1.0, small: 4.0, medium: 7.0 };
+    return { micro: 1.0, small: 3.0, medium: 5.0 };
   }
   function computeContribution(d, idx, totalContrib) {
     if (!d.hasScale || (d.micro == null && d.small == null && d.medium == null)) return null;
@@ -825,7 +883,7 @@
     }
   }
 
-  // Finance index 20국: Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진 국가 10국 (Taiwan, South Korea, Japan, China, UAE, Saudi Arabia, UK, Germany, France, USA)
+  // Finance index 21국: Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진 국가 10국 (Taiwan, South Korea, Japan, China, UAE, Saudi Arabia, UK, Germany, France, USA)
   var TOP10_NAMES = MSME_DATA.slice(0, 10).map(function(d) { return d.name; });
   var BENCHMARK_10 = ['Taiwan', 'South Korea', 'Japan', 'China', 'UAE', 'Saudi Arabia', 'UK', 'Germany', 'France', 'USA']; // 벤치마킹 선진 국가
   function rand(min, max, seed) {
@@ -843,6 +901,14 @@
       bank_wc_pct: { 2023: Math.round(rand(10, 38, i + 1)), 2024: Math.round(rand(12, 40, i + 21)) },
       electronic_pct: { 2023: Math.round(rand(28, 72, i + 2)), 2024: Math.round(rand(32, 76, i + 22)) }
     });
+  });
+  // 필리핀: World Bank Enterprise Surveys 스타일 (checking/savings, bank for working capital, electronic payments)
+  FINANCE_20.push({
+    name: 'Philippines',
+    isBenchmark: false,
+    checking_pct: { 2023: 76, 2024: 78 },
+    bank_wc_pct: { 2023: 14, 2024: 15 },
+    electronic_pct: { 2023: 40, 2024: 42 }
   });
   BENCHMARK_10.forEach(function(name, i) {
     FINANCE_20.push({
@@ -954,10 +1020,16 @@
   function renderChart3() {
     var avgMediumPct = avgVal(CONTRIB_DATA, function(d) { return d.contribution && d.contribution.mediumPct; });
     var CONTRIB_HEIGHT = 300;
+    // Medium 비중이 큰 순서대로 나열
+    var contribSorted = CONTRIB_DATA.slice().sort(function(a, b) {
+      var ma = (a.contribution && a.contribution.mediumPct) || 0;
+      var mb = (b.contribution && b.contribution.mediumPct) || 0;
+      return mb - ma;
+    });
     var html = '<div class="contribution-bar-wrap" style="position:relative">';
     html += '<div class="contribution-avg-line" style="bottom:' + (32 + (avgMediumPct / 100) * CONTRIB_HEIGHT) + 'px;left:0;right:0"></div>';
-    for (var i = 0; i < CONTRIB_DATA.length; i++) {
-      var d = CONTRIB_DATA[i];
+    for (var i = 0; i < contribSorted.length; i++) {
+      var d = contribSorted[i];
       var c = d.contribution;
       if (!c) continue;
       var microH = (c.microPct / 100) * CONTRIB_HEIGHT;
@@ -972,8 +1044,260 @@
       html += '<div class="contribution-bar-label">' + d.name + '</div></div>';
     }
     html += '</div>';
-    html += '<p style="margin-top:0.5rem;font-size:0.75rem;color:#8b8b96">Micro(위) · Small(중간) · Medium-sized(아래) · 붉은 점선: Medium 기여도 평균 ' + avgMediumPct.toFixed(1) + '% · 1. MSME GDP와 동일한 국가 순서(GDP 큰 순), 2023 Scale of Enterprise 데이터 있는 국가만 표시</p>';
+    html += '<p style="margin-top:0.5rem;font-size:0.75rem;color:#8b8b96">Micro(위) · Small(중간) · Medium-sized(아래) · 붉은 점선: Medium 기여도 평균 ' + avgMediumPct.toFixed(1) + '% · Medium 비중 큰 순 · 2023 Scale of Enterprise 데이터 있는 국가만 표시</p>';
     document.getElementById('chart3').innerHTML = html;
+  }
+
+  // Malaysia MSME 2024: Table 5 Value Added by Kind of Economic Activity (% of total MSME GDP). DOSM MSMEs Performance 2024. English only. B = sector group (color).
+  var MALAYSIA_SEGMENTATION = [
+    { sector: 'A', sectorName: 'Agriculture', name: 'Agriculture, forestry and fishing', pct: 8.7, color: '#22c55e' },
+    { sector: 'B', sectorName: 'Mining & Quarrying', name: 'Mining and quarrying', pct: 0.5, color: '#64748b' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Food products', pct: 3.0, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Beverages and tobacco', pct: 0.8, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Textiles and wearing apparel', pct: 1.2, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Wood and paper products', pct: 2.0, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Chemicals and chemical products', pct: 2.8, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Metals and metal products', pct: 2.0, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Machinery and equipment', pct: 1.8, color: '#6366f1' },
+    { sector: 'C', sectorName: 'Manufacturing', name: 'Other manufacturing', pct: 8.2, color: '#6366f1' },
+    { sector: 'D', sectorName: 'Utilities', name: 'Electricity, gas, steam', pct: 0.3, color: '#94a3b8' },
+    { sector: 'E', sectorName: 'Construction', name: 'Construction', pct: 5.0, color: '#f59e0b' },
+    { sector: 'F', sectorName: 'Services', name: 'Wholesale and retail trade', pct: 17.0, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Transport and storage', pct: 5.0, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Accommodation and food service', pct: 4.0, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Information and communication', pct: 3.5, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Financial and insurance', pct: 4.5, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Real estate', pct: 3.0, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Professional, scientific and technical', pct: 5.0, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Administrative and support service', pct: 2.5, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Education', pct: 2.5, color: '#3b82f6' },
+    { sector: 'F', sectorName: 'Services', name: 'Human health and social work', pct: 2.5, color: '#3b82f6' },
+    // Other service activities: ISIC Rev.4 Section S (Div 94–96) — e.g. repair of goods, personal care, membership organizations; DOSM MSIC 2008 aligns with ISIC. See https://www.dosm.gov.my/portal-main/release-content/micro-small--medium-enterprises-msmes-performance-2024
+    { sector: 'F', sectorName: 'Services', name: 'Other service activities', pct: 9.3, color: '#3b82f6' }
+  ];
+
+  // Thailand MSME GDP by sector (% share) 2024 — 2025-adb-asia-sme-monitor-tha_0.xlsx Table 2_THA, row 48–54, col 2024
+  // Other services: ADB/ISIC Section S — e.g. repair of goods (Div 94–95), personal care (Div 96), membership organizations, activities of extraterritorial bodies. See ADB Asia SME Monitor methodology.
+  // Others*: Includes mining and electricity, gas and water supply.
+  var THAILAND_SEGMENTATION = [
+    { name: 'Agriculture, forestry, and fisheries', pct: 0.5, color: '#22c55e' },
+    { name: 'Manufacturing', pct: 32.2, color: '#6366f1' },
+    { name: 'Construction', pct: 4.1, color: '#f59e0b' },
+    { name: 'Wholesale and retail trade', pct: 21.1, color: '#3b82f6' },
+    { name: 'Other services', pct: 40.3, color: '#3b82f6' },
+    { name: 'Others*', pct: 1.8, color: '#94a3b8' }
+  ];
+
+  // Thailand MSME by region (% share) 2024 — 2025-adb-asia-sme-monitor-tha_0.xlsx Table 2_THA, row 22–23, col 2024
+  var THAILAND_REGIONS = [
+    { id: 'Bangkok', name: 'Capital city (Bangkok)', pct: 16.6 },
+    { id: 'Others', name: 'Others', pct: 83.4 }
+  ];
+
+  // Malaysia MSMEs by region (% share) 2023 — 2024 ADB Asia SME Monitor - MAL.xlsx Table 2_MAL, row 23–24, col 2023
+  var MALAYSIA_REGIONS = [
+    { id: 'KualaLumpur', name: 'Capital city (Kuala Lumpur)', pct: 12.3 },
+    { id: 'Others', name: 'Others', pct: 87.7 }
+  ];
+
+  function renderThailandSegmentation() {
+    var data = THAILAND_SEGMENTATION.slice().sort(function(a, b) { return b.pct - a.pct; });
+    var total = data.reduce(function(s, d) { return s + d.pct; }, 0);
+    if (total <= 0) return;
+    var container = document.getElementById('chart-seg-thailand');
+    var legendEl = document.getElementById('chart-seg-thailand-legend');
+    if (!container || !legendEl) return;
+    var tooltip = document.getElementById('sector-tooltip');
+    if (!tooltip) tooltip = document.querySelector('.sector-tooltip');
+    var w = 360, h = 360, cx = w / 2, cy = h / 2, r = 140, innerR = 70;
+    var sum = 0;
+    var slices = [];
+    for (var i = 0; i < data.length; i++) {
+      var start = sum;
+      sum += data[i].pct / total;
+      slices.push({ start: start * 2 * Math.PI, end: sum * 2 * Math.PI, d: data[i] });
+    }
+    function arcPath(sA, eA, ir) {
+      var large = (eA - sA) > Math.PI ? 1 : 0;
+      return 'M ' + (cx + r * Math.cos(sA)) + ' ' + (cy + r * Math.sin(sA)) + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + (cx + r * Math.cos(eA)) + ' ' + (cy + r * Math.sin(eA)) + ' L ' + (cx + ir * Math.cos(eA)) + ' ' + (cy + ir * Math.sin(eA)) + ' A ' + ir + ' ' + ir + ' 0 ' + large + ' 0 ' + (cx + ir * Math.cos(sA)) + ' ' + (cy + ir * Math.sin(sA)) + ' Z';
+    }
+    var svg = '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet"><g>';
+    for (var i = 0; i < slices.length; i++) {
+      var s = slices[i];
+      var sA = s.start - Math.PI / 2, eA = s.end - Math.PI / 2;
+      svg += '<path class="seg-slice" fill="' + s.d.color + '" d="' + arcPath(sA, eA, innerR) + '" data-name="' + s.d.name.replace(/"/g, '&quot;') + '" data-pct="' + s.d.pct.toFixed(1) + '"/>';
+    }
+    svg += '</g></svg>';
+    container.innerHTML = svg;
+    var legendHtml = '<h4>By industry sector</h4><ul>';
+    for (var i = 0; i < data.length; i++) {
+      var d = data[i];
+      legendHtml += '<li><span style="display:inline-block;width:10px;height:10px;background:' + d.color + ';margin-right:6px;vertical-align:middle;"></span> ' + d.name + ': <span class="pct">' + d.pct.toFixed(1) + '%</span></li>';
+    }
+    legendHtml += '</ul>';
+    legendEl.innerHTML = legendHtml;
+    container.querySelectorAll('.seg-slice').forEach(function(path) {
+      path.addEventListener('mouseenter', function(e) {
+        if (tooltip) {
+          tooltip.textContent = path.getAttribute('data-name') + ' — ' + path.getAttribute('data-pct') + '%';
+          tooltip.classList.add('visible');
+          tooltip.style.left = (e.clientX + 12) + 'px';
+          tooltip.style.top = (e.clientY + 12) + 'px';
+        }
+      });
+      path.addEventListener('mousemove', function(e) {
+        if (tooltip) { tooltip.style.left = (e.clientX + 12) + 'px'; tooltip.style.top = (e.clientY + 12) + 'px'; }
+      });
+      path.addEventListener('mouseleave', function() {
+        if (tooltip) tooltip.classList.remove('visible');
+      });
+    });
+  }
+
+  // Thailand 2 regions (Bangkok / Others) — choropleth by MSME % share, region names on map
+  function renderThailandRegionMap() {
+    var data = THAILAND_REGIONS;
+    var maxPct = Math.max.apply(null, data.map(function(d) { return d.pct; }));
+    if (maxPct <= 0) maxPct = 1;
+    var container = document.getElementById('chart-thailand-region');
+    var legendEl = document.getElementById('chart-thailand-region-legend');
+    if (!container || !legendEl) return;
+    function fillForPct(pct) {
+      var t = pct / maxPct;
+      var r = Math.round(99 + (156 - 99) * (1 - t));
+      var g = Math.round(102 + (126 - 102) * (1 - t));
+      var b = Math.round(241 + (246 - 241) * (1 - t));
+      return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+    // Two areas: left = Bangkok, right = Others (with region name labels on map)
+    var regions = [
+      { id: 'Bangkok', path: 'M 0,0 L 120,0 L 120,400 L 0,400 Z', name: 'Bangkok', pct: data[0].pct, cx: 60, cy: 200 },
+      { id: 'Others', path: 'M 120,0 L 400,0 L 400,400 L 120,400 Z', name: 'Others', pct: data[1].pct, cx: 260, cy: 200 }
+    ];
+    var svg = '<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"><g>';
+    for (var j = 0; j < regions.length; j++) {
+      var r = regions[j];
+      svg += '<path class="region-path" fill="' + fillForPct(r.pct) + '" d="' + r.path + '" data-region="' + r.id + '" data-pct="' + r.pct.toFixed(1) + '"/>';
+      svg += '<text x="' + r.cx + '" y="' + (r.cy - 8) + '" text-anchor="middle" fill="#e8e8ed" font-size="14" font-weight="600">' + r.name + '</text>';
+      svg += '<text x="' + r.cx + '" y="' + (r.cy + 10) + '" text-anchor="middle" fill="#a5b4fc" font-size="12">' + r.pct.toFixed(1) + '%</text>';
+    }
+    svg += '</g></svg>';
+    container.innerHTML = svg;
+    var legendHtml = '<h4>By region</h4><ul>';
+    for (var k = 0; k < data.length; k++) {
+      var d = data[k];
+      legendHtml += '<li><span style="display:inline-block;width:10px;height:10px;background:' + fillForPct(d.pct) + ';margin-right:6px;vertical-align:middle;border:1px solid #2a2a30;"></span> ' + d.name + ': <span class="pct">' + d.pct.toFixed(1) + '%</span></li>';
+    }
+    legendHtml += '</ul>';
+    legendEl.innerHTML = legendHtml;
+  }
+
+  // Malaysia 2 regions (Kuala Lumpur / Others) — choropleth by MSME % share, region names on map
+  function renderMalaysiaRegionMap() {
+    var data = MALAYSIA_REGIONS;
+    var maxPct = Math.max.apply(null, data.map(function(d) { return d.pct; }));
+    if (maxPct <= 0) maxPct = 1;
+    var container = document.getElementById('chart-malaysia-region');
+    var legendEl = document.getElementById('chart-malaysia-region-legend');
+    if (!container || !legendEl) return;
+    function fillForPct(pct) {
+      var t = pct / maxPct;
+      var r = Math.round(99 + (156 - 99) * (1 - t));
+      var g = Math.round(102 + (126 - 102) * (1 - t));
+      var b = Math.round(241 + (246 - 241) * (1 - t));
+      return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+    var regions = [
+      { id: 'KualaLumpur', path: 'M 0,0 L 120,0 L 120,400 L 0,400 Z', name: 'Kuala Lumpur', pct: data[0].pct, cx: 60, cy: 200 },
+      { id: 'Others', path: 'M 120,0 L 400,0 L 400,400 L 120,400 Z', name: 'Others', pct: data[1].pct, cx: 260, cy: 200 }
+    ];
+    var svg = '<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"><g>';
+    for (var j = 0; j < regions.length; j++) {
+      var r = regions[j];
+      svg += '<path class="region-path" fill="' + fillForPct(r.pct) + '" d="' + r.path + '" data-region="' + r.id + '" data-pct="' + r.pct.toFixed(1) + '"/>';
+      svg += '<text x="' + r.cx + '" y="' + (r.cy - 8) + '" text-anchor="middle" fill="#e8e8ed" font-size="14" font-weight="600">' + r.name + '</text>';
+      svg += '<text x="' + r.cx + '" y="' + (r.cy + 10) + '" text-anchor="middle" fill="#a5b4fc" font-size="12">' + r.pct.toFixed(1) + '%</text>';
+    }
+    svg += '</g></svg>';
+    container.innerHTML = svg;
+    var legendHtml = '<h4>By region</h4><ul>';
+    for (var k = 0; k < data.length; k++) {
+      var d = data[k];
+      legendHtml += '<li><span style="display:inline-block;width:10px;height:10px;background:' + fillForPct(d.pct) + ';margin-right:6px;vertical-align:middle;border:1px solid #2a2a30;"></span> ' + d.name + ': <span class="pct">' + d.pct.toFixed(1) + '%</span></li>';
+    }
+    legendHtml += '</ul>';
+    legendEl.innerHTML = legendHtml;
+  }
+
+  function renderMalaysiaSegmentation() {
+    var data = MALAYSIA_SEGMENTATION;
+    var total = data.reduce(function(s, d) { return s + d.pct; }, 0);
+    if (total <= 0) return;
+    var container = document.getElementById('chart-seg-malaysia');
+    var legendEl = document.getElementById('chart-seg-malaysia-legend');
+    if (!container || !legendEl) return;
+    var tooltip = document.getElementById('sector-tooltip');
+    if (!tooltip) tooltip = document.querySelector('.sector-tooltip');
+    var w = 360, h = 360, cx = w / 2, cy = h / 2, r = 140, innerR = 70;
+    var sum = 0;
+    var slices = [];
+    for (var i = 0; i < data.length; i++) {
+      var start = sum;
+      sum += data[i].pct / total;
+      slices.push({ start: start * 2 * Math.PI, end: sum * 2 * Math.PI, d: data[i] });
+    }
+    function arcPath(sA, eA, ir) {
+      var large = (eA - sA) > Math.PI ? 1 : 0;
+      return 'M ' + (cx + r * Math.cos(sA)) + ' ' + (cy + r * Math.sin(sA)) + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + (cx + r * Math.cos(eA)) + ' ' + (cy + r * Math.sin(eA)) + ' L ' + (cx + ir * Math.cos(eA)) + ' ' + (cy + ir * Math.sin(eA)) + ' A ' + ir + ' ' + ir + ' 0 ' + large + ' 0 ' + (cx + ir * Math.cos(sA)) + ' ' + (cy + ir * Math.sin(sA)) + ' Z';
+    }
+    var svg = '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet"><g>';
+    for (var i = 0; i < slices.length; i++) {
+      var s = slices[i];
+      var sA = s.start - Math.PI / 2, eA = s.end - Math.PI / 2;
+      var pathD = arcPath(sA, eA, innerR);
+      svg += '<path class="seg-slice" fill="' + s.d.color + '" d="' + pathD + '" data-name="' + s.d.name.replace(/"/g, '&quot;') + '" data-pct="' + s.d.pct.toFixed(1) + '" data-sector="' + s.d.sectorName + '"/>';
+    }
+    svg += '</g></svg>';
+    container.innerHTML = svg;
+    var bySector = {};
+    for (var j = 0; j < data.length; j++) {
+      var sn = data[j].sectorName;
+      if (!bySector[sn]) bySector[sn] = { name: sn, pct: 0, color: data[j].color };
+      bySector[sn].pct += data[j].pct;
+    }
+    var sectorList = Object.keys(bySector).map(function(k) { return bySector[k]; });
+    sectorList.sort(function(a, b) { return b.pct - a.pct; });
+    var legendHtml = '<h4>By industry sector</h4><ul>';
+    for (var si = 0; si < sectorList.length; si++) {
+      var s = sectorList[si];
+      legendHtml += '<li><span style="display:inline-block;width:10px;height:10px;background:' + s.color + ';margin-right:6px;vertical-align:middle;"></span> ' + s.name + ': <span class="pct">' + s.pct.toFixed(1) + '%</span></li>';
+    }
+    legendHtml += '</ul>';
+    var subSorted = data.slice().sort(function(a, b) { return b.pct - a.pct; });
+    var top6 = subSorted.slice(0, 6);
+    legendHtml += '<h4 style="margin-top:1rem;">By sub-sector (top 6)</h4><ul>';
+    for (var ti = 0; ti < top6.length; ti++) {
+      var d = top6[ti];
+      legendHtml += '<li><span style="display:inline-block;width:10px;height:10px;background:' + d.color + ';margin-right:6px;vertical-align:middle;"></span> ' + d.name + ': <span class="pct">' + d.pct.toFixed(1) + '%</span></li>';
+    }
+    legendHtml += '</ul>';
+    legendEl.innerHTML = legendHtml;
+    container.querySelectorAll('.seg-slice').forEach(function(path) {
+      path.addEventListener('mouseenter', function(e) {
+        if (tooltip) {
+          tooltip.textContent = path.getAttribute('data-name') + ' — ' + path.getAttribute('data-pct') + '% (' + path.getAttribute('data-sector') + ')';
+          tooltip.classList.add('visible');
+          tooltip.style.left = (e.clientX + 12) + 'px';
+          tooltip.style.top = (e.clientY + 12) + 'px';
+        }
+      });
+      path.addEventListener('mousemove', function(e) {
+        if (tooltip) { tooltip.style.left = (e.clientX + 12) + 'px'; tooltip.style.top = (e.clientY + 12) + 'px'; }
+      });
+      path.addEventListener('mouseleave', function() {
+        if (tooltip) tooltip.classList.remove('visible');
+      });
+    });
   }
 
   function bindFilters() {
@@ -1041,6 +1365,10 @@
     renderLineChart('chart6', FINANCE_20, function(d,y) { return d.checking_pct[y]; }, 2024, 0, 100);
     renderLineChart('chart7', FINANCE_20, function(d,y) { return d.bank_wc_pct[y]; }, 2024, 0, 100);
     renderLineChart('chart8', FINANCE_20, function(d,y) { return d.electronic_pct[y]; }, 2024, 0, 100);
+    renderMalaysiaSegmentation();
+    renderThailandSegmentation();
+    renderThailandRegionMap();
+    renderMalaysiaRegionMap();
     bindFilters();
     if (typeof initAppendixCharts === 'function') initAppendixCharts();
   }
