@@ -79,6 +79,22 @@
     .segmentation-legend { flex: 1; min-width: 200px; padding: 0.5rem 0; }
     .segmentation-legend h4 { margin: 0 0 0.5rem; font-size: 0.85rem; color: #a5b4fc; }
     .seg-subtitle { margin: 1.25rem 0 0.2rem; font-size: 0.95rem; font-weight: 700; color: #e8e8ed; }
+    .corp-finance-callout { background: rgba(99, 102, 241, 0.08); border-left: 3px solid #6366f1; border-radius: 0 6px 6px 0; padding: 0.6rem 0.9rem; margin-bottom: 1rem; font-size: 0.8rem; line-height: 1.45; }
+    .corp-finance-callout strong { color: #a5b4fc; }
+    .corp-finance-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 0.5rem; }
+    .corp-finance-table th, .corp-finance-table td { border: 1px solid #2a2a30; padding: 0.5rem 0.75rem; text-align: left; vertical-align: top; background: #18181c; }
+    .corp-finance-table th { background: #1f1f24; color: #a5b4fc; font-weight: 600; }
+    .corp-finance-table .sector-col { min-width: 12rem; color: #e8e8ed; }
+    .corp-finance-table .badge-high { color: #22c55e; font-weight: 600; }
+    .corp-finance-table .badge-mid { color: #f59e0b; font-weight: 600; }
+    .corp-finance-table .badge-low { color: #ef4444; font-weight: 600; }
+    .corp-finance-table .reason-bullets { margin: 0; padding-left: 1rem; color: #a0a0a8; font-size: 0.75rem; line-height: 1.4; }
+    .corp-finance-table .reason-bullets li { margin-bottom: 0.2rem; }
+    .corp-finance-table tbody tr { height: 4rem; }
+    .corp-finance-table tbody td { vertical-align: middle; padding: 0.6rem 0.75rem; }
+    .corp-finance-filter { display: flex; gap: 0.75rem; margin-bottom: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .corp-finance-filter label { font-size: 0.8rem; color: #8b8b96; }
+    .corp-finance-filter select { background: #2a2a30; color: #e8e8ed; border: 1px solid #3a3a42; border-radius: 6px; padding: 0.35rem 0.6rem; font-size: 0.8rem; cursor: pointer; }
     .segmentation-legend ul { margin: 0; padding-left: 1.25rem; font-size: 0.8rem; color: #e8e8ed; line-height: 1.6; }
     .segmentation-legend li { margin-bottom: 0.25rem; }
     .segmentation-legend .pct { color: #a5b4fc; font-weight: 600; }
@@ -359,12 +375,31 @@
 
     <div id="panelseg-thailand" class="chart-panel">
       <div class="chart-card">
+        <div class="corp-finance-callout">
+          <strong>Executive summary</strong><br>
+          <strong>기타 서비스</strong> (숙박·외식, 교육, 전문서비스, ICT 등 40.3% 차지)—80% SME가 개인카드로 사업비 지불, 법인카드·B2B 결제 서비스 미침투<br>
+          <strong>도소매업</strong> (21.1%)—소규모 가맹점·전통시장 중심으로 EDC·법인카드 수용률 저조
+        </div>
         <h3>By industry sector</h3>
         <p class="desc">MSME GDP by sector (% share) 2024 · ADB data.adb.org Table 2_THA row 47~</p>
         <div class="segmentation-pie-wrap">
           <div class="segmentation-pie-container" id="chart-seg-thailand"></div>
           <div class="segmentation-legend" id="chart-seg-thailand-legend"></div>
         </div>
+        <h3 class="seg-subtitle">Corporate Finance penetration by Sector</h3>
+        <p class="desc">GDP concentration: By industry sector 파이 기준 High/Mid/Low · Corporate finance penetration: 업종별 법인카드·법인금융 침투율 (High/Mid/Low)</p>
+        <table class="corp-finance-table" role="grid" aria-label="Thailand Corporate Finance penetration by sector">
+          <thead><tr><th class="sector-col">업종</th><th>GDP 집중도</th><th>법인 금융 침투율</th><th>판단 근거</th></tr></thead>
+          <tbody>
+            <tr><td class="sector-col">기타 서비스</td><td><span class="badge-high">High</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>태국 SME 80%가 개인카드로 사업비 지불 (Visa/Backbase). F&B·숙박·전문서비스 미침투.</li><li>OSMEP MSME2024: 소규모 사업장 디지털 결제·인프라 격차.</li></ul></td></tr>
+            <tr><td class="sector-col">제조업</td><td><span class="badge-high">High</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>정형화된 섹터; 수출기업은 은행·카드 접근 양호.</li><li>마이크로·소규모 제조업은 비공식 금융 의존.</li></ul></td></tr>
+            <tr><td class="sector-col">도소매업</td><td><span class="badge-high">High</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>소규모 가맹점 EDC·QR 수용 지연; 법인카드 사용 제한적.</li><li>BOT: EDC 90만+대 보급이나 전통 소매 미침투.</li></ul></td></tr>
+            <tr><td class="sector-col">건설업</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>프로젝트 기반 자금조달; 대출 위주, 법인카드 보조.</li></ul></td></tr>
+            <tr><td class="sector-col">기타*</td><td><span class="badge-low">Low</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>광업·전기가스; MSME GDP 비중 작음.</li></ul></td></tr>
+            <tr><td class="sector-col">농림수산업</td><td><span class="badge-low">Low</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>비공식·현금 거래; corporate finance 채택 제한적.</li></ul></td></tr>
+          </tbody>
+        </table>
+        <p class="desc" style="margin-top:0.5rem;"><strong>소스</strong> <a href="https://www.sme.go.th/uploads/file/20240930-133515_MSME2024_EN.pdf" target="_blank" rel="noopener">OSMEP MSME2024</a> · Visa Thailand · Backbase/IDC Thailand SME banking</p>
         <h3 class="seg-subtitle">By region</h3>
         <p class="desc">MSME by region (% share) 2024 · ADB Table 2_THA row 21~</p>
         <div class="thailand-map-wrap">
@@ -377,12 +412,64 @@
 
     <div id="panelseg-malaysia" class="chart-panel">
       <div class="chart-card">
+        <div class="corp-finance-callout">
+          <strong>Executive summary</strong><br>
+          <strong>도소매업</strong> (17%)—다수 소규모 도소매업체, BNM·ICMR 기준 bank lending은 주력이나 법인카드·B2B 결제 활용도 낮음<br>
+          <strong>기타 서비스 활동</strong> (9.3%)—개인사업·수리업·부동산임대 등 informal 성향, corporate finance 미침투
+        </div>
         <h3>By industry sector</h3>
         <p class="desc">Table 5 Value Added of MSMEs by Kind of Economic Activity at Current Prices (2024) · DOSM MSMEs Performance 2024 · 전체 MSME GDP 대비 % · 마우스 오버 시 세부 업종명 표시</p>
         <div class="segmentation-pie-wrap">
           <div class="segmentation-pie-container" id="chart-seg-malaysia"></div>
           <div class="segmentation-legend" id="chart-seg-malaysia-legend"></div>
         </div>
+        <h3 class="seg-subtitle">Corporate Finance penetration by Sector</h3>
+        <p class="desc">GDP concentration: By industry sector 파이 기준 High/Mid/Low · Corporate finance penetration: 업종별 법인카드·법인금융 침투율 (sub-sector 단위)</p>
+        <div class="corp-finance-filter">
+          <label>GDP 집중도:</label>
+          <select id="filter-malaysia-gdp" aria-label="GDP 집중도 필터">
+            <option value="">전체</option>
+            <option value="high">High</option>
+            <option value="mid">Mid</option>
+            <option value="low">Low</option>
+          </select>
+          <label>법인 금융 침투율:</label>
+          <select id="filter-malaysia-pen" aria-label="법인 금융 침투율 필터">
+            <option value="">전체</option>
+            <option value="high">High</option>
+            <option value="mid">Mid</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <table class="corp-finance-table" id="table-malaysia-corp" role="grid" aria-label="Malaysia Corporate Finance penetration by sector">
+          <thead><tr><th class="sector-col">업종 (sub-sector)</th><th>GDP 집중도</th><th>법인 금융 침투율</th><th>판단 근거</th></tr></thead>
+          <tbody>
+            <tr data-gdp="high" data-pen="low"><td class="sector-col">도소매업</td><td><span class="badge-high">High</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>SME Corp/DOSM: 소규모 도소매 다수; bank lending 위주이나 법인카드·B2B 결제 활용 저조.</li><li>ICMR: 64% external finance, 대부분 banking; corporate card 미침투.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="low"><td class="sector-col">기타 서비스 활동</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>ISIC S: 수리업, 개인서비스, 단체활동; informal·소규모居多.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">기타 제조업</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>BNM/SME Bank: 제조업 운영자금·설비자금 대출 다수; 법인카드 보조.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">건설업</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>프로젝트 기반; bank financing 일반, 법인카드 보조.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="low"><td class="sector-col">농림수산업</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>BNM HalalBiz 등 지원 있으나 현금·informal 비중 높음.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">식품</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>Halal·F&B; 일부 정형화 기업은 bank/card 접근 양호.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">운수·창고</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>물류·운송; 연료·차량 관련 corporate card 잠재.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="high"><td class="sector-col">금융·보험</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-high">High</span></td><td><ul class="reason-bullets"><li>금융업; 법인서비스·corporate card 활용 당연히 높음.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">전문·과학·기술 서비스</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>전문서비스; 일부 고수익 기업 corporate finance 양호.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">화학·화학제품</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>제조 하위; BNM scheme·bank lending 활용.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="low"><td class="sector-col">숙박·음식점</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>호텔·외식; 소규모 가맹점 다수, 법인카드 수용률 낮음.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">부동산</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>부동산; 대출 중심, corporate card 보조.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">목재·종이</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>제조; bank financing 일반적.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">금속·금속제품</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>제조 하위; BNM scheme 활용.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">정보통신</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>ICT; startup·scale-up 다수, market-based financing·digital 결제 관심.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="mid"><td class="sector-col">섬유·의류</td><td><span class="badge-low">Low</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>섬유·의류; 수출기업 일부 양호.</li></ul></td></tr>
+            <tr data-gdp="mid" data-pen="mid"><td class="sector-col">기계·장비</td><td><span class="badge-mid">Mid</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>기계제조; 설비자금·bank lending.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="mid"><td class="sector-col">음료·담배</td><td><span class="badge-low">Low</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>음료·담배; 규제산업, 정형화 기업 다수.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="mid"><td class="sector-col">행정·지원 서비스</td><td><span class="badge-low">Low</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>행정지원; 직원·B2B 비용 corporate card 잠재.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="mid"><td class="sector-col">교육</td><td><span class="badge-low">Low</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>교육; 일부 사립기관 bank/card 활용.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="mid"><td class="sector-col">보건·복지</td><td><span class="badge-low">Low</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>의료·복지; clinic·요양 시설 bank 연동.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="low"><td class="sector-col">광업</td><td><span class="badge-low">Low</span></td><td><span class="badge-low">Low</span></td><td><ul class="reason-bullets"><li>광업; MSME 비중 매우 낮음.</li></ul></td></tr>
+            <tr data-gdp="low" data-pen="mid"><td class="sector-col">전기가스·증기</td><td><span class="badge-low">Low</span></td><td><span class="badge-mid">Mid</span></td><td><ul class="reason-bullets"><li>전기가스; 공공·규제; 제한적 MSME.</li></ul></td></tr>
+          </tbody>
+        </table>
+        <p class="desc" style="margin-top:0.5rem;"><strong>소스</strong> <a href="https://www.dosm.gov.my/portal-main/release-content/micro-small--medium-enterprises-msmes-performance-2024" target="_blank" rel="noopener">DOSM MSMEs Performance 2024</a> · <a href="https://www.icmr.my/wp-content/uploads/2024/02/ICMR_SME-Financing-Report_FINAL_23022024.pdf" target="_blank" rel="noopener">ICMR SME Financing Report</a> · SME Corp Malaysia</p>
         <h3 class="seg-subtitle">By region</h3>
         <p class="desc">MSMEs by region (% share) 2023 · ADB 2024 Asia SME Monitor - MAL Table 2_MAL row 23~</p>
         <div class="thailand-map-wrap">
@@ -1425,6 +1512,7 @@
     renderThailandRegionMap();
     renderMalaysiaRegionMap();
     bindFilters();
+    bindMalaysiaCorpFilter();
     if (typeof initAppendixCharts === 'function') initAppendixCharts();
   }
 
@@ -1483,6 +1571,26 @@
   function initAppendixCharts() {
     renderAppendixCombo('appendix-combo-infra', CM_INFRA_NAMES, CM_INFRA_COUNTRIES, CM_INFRA_REVENUE, CM_INFRA_REVENUE_LABELS, CM_INFRA_CUSTOMERS, CM_INFRA_CUSTOMER_LABELS);
     renderAppendixCombo('appendix-combo-saas', CM_SAAS_NAMES, CM_SAAS_COUNTRIES, CM_SAAS_REVENUE, CM_SAAS_REVENUE_LABELS, CM_SAAS_CUSTOMERS, CM_SAAS_CUSTOMER_LABELS);
+  }
+
+  function bindMalaysiaCorpFilter() {
+    var gdpSel = document.getElementById('filter-malaysia-gdp');
+    var penSel = document.getElementById('filter-malaysia-pen');
+    var table = document.getElementById('table-malaysia-corp');
+    if (!gdpSel || !penSel || !table) return;
+    function filterRows() {
+      var gdp = (gdpSel.value || '').toLowerCase();
+      var pen = (penSel.value || '').toLowerCase();
+      var rows = table.querySelectorAll('tbody tr');
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var matchGdp = !gdp || (r.getAttribute('data-gdp') || '') === gdp;
+        var matchPen = !pen || (r.getAttribute('data-pen') || '') === pen;
+        r.style.display = (matchGdp && matchPen) ? '' : 'none';
+      }
+    }
+    gdpSel.addEventListener('change', filterRows);
+    penSel.addEventListener('change', filterRows);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
