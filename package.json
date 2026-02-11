@@ -1,0 +1,8 @@
+{
+  "name": "storehub",
+  "private": true,
+  "scripts": {
+    "dashboard": "npm run dev --prefix dashboard",
+    "dashboard:install": "npm install --prefix dashboard"
+  }
+}

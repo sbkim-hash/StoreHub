@@ -52,9 +52,9 @@
     .contribution-bar-wrap { display: flex; align-items: flex-end; gap: 4px; padding: 0 0 36px 0; position: relative; height: 340px; }
     .contribution-bar-cell { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 0; height: 300px; justify-content: flex-end; }
     .contribution-stack { width: 100%; max-width: 40px; height: 100%; display: flex; flex-direction: column-reverse; border-radius: 4px 4px 0 0; overflow: hidden; }
-    .contribution-stack .seg-micro { background: #6366f1; }
-    .contribution-stack .seg-small { background: #22c55e; }
-    .contribution-stack .seg-medium { background: #f59e0b; }
+    .contribution-stack .seg-micro { background: #d1d5db; }
+    .contribution-stack .seg-small { background: #8b5cf6; }
+    .contribution-stack .seg-medium { background: #5b21b6; }
     .contribution-avg-line { position: absolute; left: 0; right: 0; height: 0; border-top: 2px dashed #dc2626; z-index: 2; pointer-events: none; }
     .contribution-bar-label { font-size: 0.6rem; color: #8b8b96; margin-top: 6px; text-align: center; transform: rotate(-45deg); white-space: nowrap; max-width: 52px; overflow: hidden; text-overflow: ellipsis; }
 
@@ -310,7 +310,7 @@
     <div id="panel3" class="chart-panel">
       <div class="chart-card">
         <h3>3) MSME contribution</h3>
-        <p class="desc">Country review 2. MSME landscape · scale of enterprise( micro / small / medium-sized ) 2023 기업 수 기반 GDP 기여도 · Micro 위, Small 중간, Medium 아래 · 붉은 점선: Medium 기여도 평균</p>
+        <p class="desc">Country review 2. MSME landscape · scale of enterprise( micro / small / medium-sized ) 2023 기업 수 기반 GDP 기여도(생산성 가중치 적용) · 태국: OSMEP GDP규모별 직접 데이터 · Micro 위, Small 중간, Medium 아래 · 붉은 점선: Medium 기여도 평균</p>
         <div class="chart-wrap contribution-wrap" id="chart3"></div>
       </div>
     </div>
@@ -838,7 +838,7 @@
   // 1. MSME GDP: A-4에 2023 데이터 있는 12국, GDP 큰 순
   var MSME_RAW = [
     { name: 'Singapore', msme_gdp_b: 216.791, msme_gdp_pct: 43.2, hasScale: false },
-    { name: 'Thailand', msme_gdp_b: 179.273, msme_gdp_pct: 34.7, hasScale: false },
+    { name: 'Thailand', msme_gdp_b: 179.273, msme_gdp_pct: 34.7, hasScale: true, microPct: 7.4, smallPct: 41.4, mediumPct: 51.3 },
     { name: 'Malaysia', msme_gdp_b: 134.443, msme_gdp_pct: 39.1, hasScale: true, micro: 767421, small: 314465, medium: 19839 },
     { name: 'Kazakhstan', msme_gdp_b: 96.893, msme_gdp_pct: 36.5, hasScale: true, micro: 0, small: 1999259, medium: 2940 },
     { name: 'Uzbekistan', msme_gdp_b: 53.007, msme_gdp_pct: 54.3, hasScale: false },
@@ -860,7 +860,12 @@
     return { micro: 1.0, small: 3.0, medium: 5.0 };
   }
   function computeContribution(d, idx, totalContrib) {
-    if (!d.hasScale || (d.micro == null && d.small == null && d.medium == null)) return null;
+    if (!d.hasScale) return null;
+    // GDP 비중 직접 제공 (태국: OSMEP/มูลนิธิ สวค. GDP MSME 보고서 2566)
+    if (d.microPct != null && d.smallPct != null && d.mediumPct != null) {
+      return { microPct: d.microPct, smallPct: d.smallPct, mediumPct: d.mediumPct };
+    }
+    if (d.micro == null && d.small == null && d.medium == null) return null;
     var w = getContributionWeights(idx, totalContrib);
     var mi = (d.micro || 0) * w.micro, sm = (d.small || 0) * w.small, me = (d.medium || 0) * w.medium;
     var wi = mi + sm + me;
@@ -1020,11 +1025,15 @@
   function renderChart3() {
     var avgMediumPct = avgVal(CONTRIB_DATA, function(d) { return d.contribution && d.contribution.mediumPct; });
     var CONTRIB_HEIGHT = 300;
-    // Medium 비중이 큰 순서대로 나열
+    // 국가 순서: Thailand, Malaysia, Tajikistan, Kyrgyz Republic, Georgia, Kazakhstan, Armenia, Azerbaijan, Bangladesh
+    var CONTRIB_ORDER = ['Thailand', 'Malaysia', 'Tajikistan', 'Kyrgyz Republic', 'Georgia', 'Kazakhstan', 'Armenia', 'Azerbaijan', 'Bangladesh'];
     var contribSorted = CONTRIB_DATA.slice().sort(function(a, b) {
-      var ma = (a.contribution && a.contribution.mediumPct) || 0;
-      var mb = (b.contribution && b.contribution.mediumPct) || 0;
-      return mb - ma;
+      var ia = CONTRIB_ORDER.indexOf(a.name);
+      var ib = CONTRIB_ORDER.indexOf(b.name);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return 0;
     });
     var html = '<div class="contribution-bar-wrap" style="position:relative">';
     html += '<div class="contribution-avg-line" style="bottom:' + (32 + (avgMediumPct / 100) * CONTRIB_HEIGHT) + 'px;left:0;right:0"></div>';
@@ -1044,7 +1053,7 @@
       html += '<div class="contribution-bar-label">' + d.name + '</div></div>';
     }
     html += '</div>';
-    html += '<p style="margin-top:0.5rem;font-size:0.75rem;color:#8b8b96">Micro(위) · Small(중간) · Medium-sized(아래) · 붉은 점선: Medium 기여도 평균 ' + avgMediumPct.toFixed(1) + '% · Medium 비중 큰 순 · 2023 Scale of Enterprise 데이터 있는 국가만 표시</p>';
+    html += '<p style="margin-top:0.5rem;font-size:0.75rem;color:#8b8b96">Micro(위) · Small(중간) · Medium-sized(아래) · 붉은 점선: Medium 기여도 평균 ' + avgMediumPct.toFixed(1) + '% · 국가 순서: 태국→말레이시아→타지키스탄→키르기스스탄→조지아→카자흐스탄→아르메니아→아제르바이잔→방글라데시 · 2023 Scale of Enterprise 데이터 있는 국가만 표시 · 태국: <a href="https://www.sme.go.th/knowledge/" target="_blank" rel="noopener">OSMEP MSME White Paper</a>·<a href="https://msmeindicator.com/pdf/reviews/gdp/" target="_blank" rel="noopener">มูลนิธิ สวค. GDP MSME</a> 2566</p>';
     document.getElementById('chart3').innerHTML = html;
   }
 
@@ -1308,6 +1317,43 @@
     document.getElementById('filter-chart8').onchange = function() { renderLineChart('chart8', FINANCE_20, function(d,y) { return d.electronic_pct[y]; }, this.value, 0, 100); };
   }
 
+  function applyPageAndTab(pageId, tabId) {
+    pageId = pageId || 'summary';
+    document.querySelectorAll('.page-nav button').forEach(function(b) { b.classList.toggle('active', b.dataset.page === pageId); });
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.toggle('active', p.id === 'page-' + pageId); });
+    if (pageId === 'whereto' && tabId) {
+      var panelEl = document.getElementById('panel' + tabId);
+      if (panelEl) {
+        document.querySelectorAll('.tabs button').forEach(function(b) { b.classList.toggle('active', b.dataset.tab === tabId); });
+        document.querySelectorAll('.chart-panel').forEach(function(p) { p.classList.remove('active'); });
+        panelEl.classList.add('active');
+      }
+    }
+  }
+
+  function syncHashToUrl(pageId, tabId) {
+    if (!pageId || pageId === 'summary') {
+      if (history.replaceState) history.replaceState(null, '', window.location.pathname + window.location.search);
+      else location.hash = '';
+      return;
+    }
+    var hash = '#' + pageId + (pageId === 'whereto' && tabId ? '-' + tabId : '');
+    if (location.hash !== hash) {
+      if (history.replaceState) history.replaceState(null, '', window.location.pathname + window.location.search + hash);
+      else location.hash = hash;
+    }
+  }
+
+  function readHash() {
+    var hash = (location.hash || '').replace(/^#/, '');
+    if (!hash) return { pageId: 'summary', tabId: null };
+    var parts = hash.split('-');
+    if (parts[0] === 'whereto' && parts.length > 1) {
+      return { pageId: 'whereto', tabId: parts.slice(1).join('-') };
+    }
+    return { pageId: hash || 'summary', tabId: null };
+  }
+
   document.getElementById('tabs').addEventListener('click', function(e) {
     var btn = e.target;
     if (btn.tagName !== 'BUTTON' || !btn.dataset.tab) return;
@@ -1316,17 +1362,26 @@
     btn.classList.add('active');
     document.querySelectorAll('.chart-panel').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('panel' + tabId).classList.add('active');
+    syncHashToUrl('whereto', tabId);
   });
 
   document.getElementById('page-nav').addEventListener('click', function(e) {
     var btn = e.target;
     if (btn.tagName !== 'BUTTON' || !btn.dataset.page) return;
     var pageId = btn.dataset.page;
-    document.querySelectorAll('.page-nav button').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById('page-' + pageId).classList.add('active');
+    applyPageAndTab(pageId, null);
+    syncHashToUrl(pageId, null);
   });
+
+  window.addEventListener('hashchange', function() {
+    var state = readHash();
+    applyPageAndTab(state.pageId, state.tabId);
+  });
+
+  (function applyInitialHash() {
+    var state = readHash();
+    if (state.pageId !== 'summary' || state.tabId) applyPageAndTab(state.pageId, state.tabId);
+  })();
 
   var howtoTabs = document.getElementById('howto-tabs');
   if (howtoTabs) {
