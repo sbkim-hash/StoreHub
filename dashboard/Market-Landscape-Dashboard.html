@@ -124,6 +124,14 @@
     .usecase-table .usecase-bullets li { margin-bottom: 0.25rem; }
     .usecase-table a { color: #818cf8; text-decoration: none; }
     .usecase-table a:hover { text-decoration: underline; }
+    .kbiz-tooltip-wrap { position: relative; display: inline-block; }
+    .kbiz-tooltip-popup { display: none; position: absolute; z-index: 200; left: 0; top: 100%; margin-top: 8px; width: 480px; padding: 0.75rem; background: #1f1f24; border: 1px solid #3a3a42; border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,0.55); text-align: left; }
+    .kbiz-tooltip-wrap:hover .kbiz-tooltip-popup { display: block; }
+    .kbiz-tooltip-images { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .kbiz-tooltip-images img { flex: 1; min-width: 0; border-radius: 6px; object-fit: cover; }
+    .kbiz-tooltip-bullets { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 0.75rem; color: #e8e8ed; line-height: 1.55; }
+    .kbiz-tooltip-bullets li { margin-bottom: 0.3rem; }
+    .howto-step-img { display: block; max-width: 100%; border-radius: 6px; margin-bottom: 0.5rem; border: 1px solid #2a2a30; }
     .segmentation-legend ul { margin: 0; padding-left: 1.25rem; font-size: 0.8rem; color: #e8e8ed; line-height: 1.6; }
     .segmentation-legend li { margin-bottom: 0.25rem; }
     .segmentation-legend .pct { color: #a5b4fc; font-weight: 600; }
@@ -163,7 +171,7 @@
     .howto-bench-callout ul { margin: 0.35rem 0 0 1rem; padding-left: 0.5rem; }
     .howto-bench-callout li { margin-bottom: 0.35rem; }
     .howto-layout { margin-top: 1rem; overflow-x: auto; }
-    .howto-compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .howto-compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; table-layout: fixed; }
     .howto-compare th, .howto-compare td { border: 1px solid #2a2a30; padding: 0.5rem 0.65rem; vertical-align: top; text-align: left; }
     .howto-compare th { background: #1f1f24; color: #a5b4fc; font-weight: 600; }
     .howto-compare th.step-col { width: 14rem; border-left: 2px solid #6366f1; }
@@ -311,7 +319,7 @@
         <h3>벤치마킹 기반 차별화</h3>
         <ul>
           <li><strong>5) 결제 수단</strong> — 직원의 지출 용도는 QR 결제 이후 모니터링 가능<br><span class="storehub-arrow">⇒ ‘가맹점 업종 및 건당 금액 제한’ 기능을 제공해 실시간 관리</span></li>
-          <li><strong>6) 증빙 수집</strong> — 많은 경우 결제 후 증빙 수집 단계에서 결제 내역이 E-receipt로 자동 저장되나(예: 태국 Opn, 말레이시아 Swipey), 세무 시스템과는 연동이 되지 않아 결국 일일이 세무용 영수증으로 변환 필요<br><span class="storehub-arrow">⇒ 결제와 동시에 정부 규격에 맞는 e-Invoice 실시간 생성</span></li>
+          <li><strong>6) 증빙 수집</strong> — 많은 경우 결제 후 증빙 수집 단계에서 결제 내역이 E-receipt로 자동 저장되나(예: 태국 K BIZ, 말레이시아 Swipey), 세무 시스템과는 연동이 되지 않아 결국 일일이 세무용 영수증으로 변환 필요<br><span class="storehub-arrow">⇒ 결제와 동시에 정부 규격에 맞는 e-Invoice 실시간 생성</span></li>
         </ul>
         <p style="margin-top:0.75rem;">또한, 기존 법인 QR player들이 커버하지 않는 <span class="summary-highlight">제조, 물류, 도매 업체 및 오프라인 영세</span> 업체도 타겟 할 수 있음</p>
       </section>
@@ -371,7 +379,7 @@
     <div id="panel6" class="chart-panel">
       <div class="chart-card">
         <h3>4) % bank account</h3>
-        <p class="desc">21개국 (Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
+        <p class="desc">20개국 (Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
         <div class="chart-filter">
           <select id="filter-chart6">
             <option value="2023">2023년</option>
@@ -385,7 +393,7 @@
     <div id="panel7" class="chart-panel">
       <div class="chart-card">
         <h3>5) % bank for working capital</h3>
-        <p class="desc">21개국 (Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
+        <p class="desc">20개국 (Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
         <div class="chart-filter">
           <select id="filter-chart7">
             <option value="2023">2023년</option>
@@ -399,7 +407,7 @@
     <div id="panel8" class="chart-panel">
       <div class="chart-card">
         <h3>6) % of payment electronically</h3>
-        <p class="desc">21개국 (Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
+        <p class="desc">20개국 (Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진국 10국) · World Bank · 붉은선: 평균</p>
         <div class="chart-filter">
           <select id="filter-chart8">
             <option value="2023">2023년</option>
@@ -540,25 +548,15 @@
       <div class="chart-card">
         <h3>Thailand Use-case</h3>
         <p class="desc">세부 업종별 법인카드/QR Use-case 및 벤치마킹 서비스</p>
-        <div class="usecase-bench-callout">
-          <div class="usecase-bench-block usecase-bench-card">
-            <strong>법인카드 서비스</strong><br>
-            <a href="https://www.ttbbank.com/en/sme/sme-solutions-for-operational-excellence/sme-payment-service-fwb/ttb-corporate-card" target="_blank" rel="noopener">TTB Corporate Card</a> · <a href="https://www.ktc.co.th/en/credit-card/commercial/ktc-visa-corporate" target="_blank" rel="noopener">KTC Visa Corporate</a> · <a href="https://www.scb.co.th/en/corporate-banking/business-cash-management/scb-business-payment" target="_blank" rel="noopener">SCB Business Payment</a> · <a href="https://www.visa.co.th/en_TH/products/visa-commercial-pay.html" target="_blank" rel="noopener">Visa Commercial Pay</a>
-          </div>
-          <div class="usecase-bench-block usecase-bench-qr">
-            <strong>법인QR 서비스</strong><br>
-            <a href="https://www.omise.co/" target="_blank" rel="noopener">Omise (Opn Payments)</a> · <a href="https://www.kasikornbank.com/en/business/sme/financial-services/collection-solutions/pages/edc.aspx" target="_blank" rel="noopener">K-Shop (KBank)</a> · <a href="https://www.scb.co.th/en/personal-banking/stories/business-maker/mae-manee-payment.html" target="_blank" rel="noopener">SCB Mae Manee</a>
-          </div>
-        </div>
         <div class="usecase-table-wrap">
           <table class="usecase-table" role="grid" aria-label="Thailand Use-case by sector">
             <thead><tr><th>Sector</th><th>세부 업종 (Sub-segment)</th><th>법인카드/QR Use-case (직원/법인 지출)</th><th>벤치마킹 서비스 (Benchmarking)</th></tr></thead>
             <tbody>
-              <tr><td>도소매업</td><td>농수산물/식자재 도매 유통</td><td><ul class="usecase-bullets"><li>유통 트럭 기사가 농가/재래시장에서 현장 매입 시 QR 결제</li><li>물류창고 하역 인력의 단기 노무비 즉시 지급</li><li>배송 중 긴급 주유 및 차량 수리비 처리</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.kasikornbank.com/en/business/sme/financial-services/collection-solutions/pages/edc.aspx" target="_blank" rel="noopener">K-Shop (KBank)</a><br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://flowaccount.com/en/" target="_blank" rel="noopener">FlowAccount</a> (회계 연동)</td></tr>
-              <tr><td>도소매업</td><td>건축 자재 및 공구 유통</td><td><ul class="usecase-bullets"><li>현장 납품 시 발생하는 하차 대행 비용 결제</li><li>공급업체에 대한 Cash-on-Delivery(COD) 대금 지불</li><li>영업 사원의 로컬 거래처 응대 및 소액 비품 구매</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.krungsri.com/en/business/cash-management/collection/payment/krungsri-make-a-pay-solution" target="_blank" rel="noopener">Krungsri Make a Pay</a><br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.peakaccount.com/" target="_blank" rel="noopener">Peak Account</a></td></tr>
-              <tr><td>기타 서비스</td><td>부티크 호텔 및 게스트하우스</td><td><ul class="usecase-bullets"><li>호텔 주방의 매일 아침 재래시장 장보기 결제</li><li>로컬 세탁/청소 용역업체에 대한 정기/비정기 대금 QR 지불</li><li>투어 가이드 및 외부 프리랜서 활동비 정산</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.scb.co.th/en/personal-banking/stories/business-maker/mae-manee-payment.html" target="_blank" rel="noopener">SCB Mae Manee</a><br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.omise.co/" target="_blank" rel="noopener">Omise</a></td></tr>
-              <tr><td>기타 서비스</td><td>이벤트/케이터링 서비스</td><td><ul class="usecase-bullets"><li>행사 현장 단기 스태프 식비 및 일당 지급</li><li>퀵서비스, 화물 배송료 등 현장 운영비 실시간 결제</li><li>장소 대관 및 소품 대여를 위한 긴급 예약금 지불</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.gbprimepay.com/" target="_blank" rel="noopener">GB Prime Pay</a><br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://siampay.com/en/truemoney.html" target="_blank" rel="noopener">TrueMoney Merchant</a></td></tr>
-              <tr><td>기타 서비스</td><td>로컬 프랜차이즈 가맹본부</td><td><ul class="usecase-bullets"><li>각 지점별 긴급 비품 조달을 위한 현장 결제</li><li>슈퍼바이저의 지점 방문 및 실태 점검 시 활동비 처리</li><li>가맹점 홍보를 위한 로컬 인쇄/제작 용역비 결제</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> PromptPay Business</td></tr>
+              <tr><td>도소매업</td><td>농수산물/식자재 도매 유통</td><td><ul class="usecase-bullets"><li>유통 트럭 기사가 농가/재래시장에서 현장 매입 시 QR 결제</li><li>물류창고 하역 인력의 단기 노무비 즉시 지급</li><li>배송 중 긴급 주유 및 차량 수리비 처리</li></ul></td><td rowspan="5" style="vertical-align:middle; text-align:left;"><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://www.kasikornbank.com/en/business/sme/Pages/k-biz.aspx" target="_blank" rel="noopener">K BIZ (Kasikorn Bank)</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/kbiz-web.png" alt="K BIZ Web"><img src="img/kbiz-app.png" alt="K BIZ App"></div><ul class="kbiz-tooltip-bullets"><li>SME 맞춤형 'All-in-One' 법인 QR 서비스: 오프라인 매장부터 B2B 거래까지 기업의 모든 자금 흐름을 App에서 관리하고 QR로 결제</li><li>현재 300만 태국 MSME 중 120만 이용객 확보</li></ul></div></span><br><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://krungthai.com/en/content/eec/medium-business" target="_blank" rel="noopener">Krungthai Business (Krungthai Bank)</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/ktb-1.png" alt="Krungthai Business 1"><img src="img/ktb-2.png" alt="Krungthai Business 2"><img src="img/ktb-3.png" alt="Krungthai Business 3"></div><ul class="kbiz-tooltip-bullets"><li>SME 대상 법인 QR 서비스: 직원이 App을 통해 지출안을 작성(Maker)하면 사장이 푸시 알람으로 결제를 승인(Authorizer)하는 권한 기반 시스템</li><li>현재 ~9만 기업이 사용 중</li></ul></div></span><br><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://www.scb.co.th/en/corporate-banking/digital-banking-services/business-anywhere" target="_blank" rel="noopener">SCB Business Anywhere (SCB)</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/scb-biz.png" alt="SCB Business Anywhere" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>SME 대상 스마트폰/워치 기반 QR 서비스: 직원이 QR 결제 요청을 보내면 사장님의 스마트폰/워치로 승인</li><li>약 10만 개 기업 사용</li></ul></div></span></td></tr>
+              <tr><td>도소매업</td><td>건축 자재 및 공구 유통</td><td><ul class="usecase-bullets"><li>현장 납품 시 발생하는 하차 대행 비용 결제</li><li>공급업체에 대한 Cash-on-Delivery(COD) 대금 지불</li><li>영업 사원의 로컬 거래처 응대 및 소액 비품 구매</li></ul></td></tr>
+              <tr><td>기타 서비스</td><td>부티크 호텔 및 게스트하우스</td><td><ul class="usecase-bullets"><li>호텔 주방의 매일 아침 재래시장 장보기 결제</li><li>로컬 세탁/청소 용역업체에 대한 정기/비정기 대금 QR 지불</li><li>투어 가이드 및 외부 프리랜서 활동비 정산</li></ul></td></tr>
+              <tr><td>기타 서비스</td><td>이벤트/케이터링 서비스</td><td><ul class="usecase-bullets"><li>행사 현장 단기 스태프 식비 및 일당 지급</li><li>퀵서비스, 화물 배송료 등 현장 운영비 실시간 결제</li><li>장소 대관 및 소품 대여를 위한 긴급 예약금 지불</li></ul></td></tr>
+              <tr><td>기타 서비스</td><td>로컬 프랜차이즈 가맹본부</td><td><ul class="usecase-bullets"><li>각 지점별 긴급 비품 조달을 위한 현장 결제</li><li>슈퍼바이저의 지점 방문 및 실태 점검 시 활동비 처리</li><li>가맹점 홍보를 위한 로컬 인쇄/제작 용역비 결제</li></ul></td></tr>
             </tbody>
           </table>
         </div>
@@ -569,25 +567,17 @@
       <div class="chart-card">
         <h3>Malaysia Use-case</h3>
         <p class="desc">세부 업종별 법인카드/QR Use-case 및 벤치마킹 서비스</p>
-        <div class="usecase-bench-callout">
-          <div class="usecase-bench-block usecase-bench-card">
-            <strong>법인카드 서비스</strong><br>
-            <a href="https://cimb.com.my/en/business/business-day-to-day/cards/corporate-card-solutions/corporate-card.html" target="_blank" rel="noopener">CIMB Corporate Card</a> · <a href="https://swipey.co/cards/" target="_blank" rel="noopener">Swipey</a> · <a href="https://www.alliancebank.com.my/business/SME/Cards" target="_blank" rel="noopener">Alliance Bank Business Card</a>
-          </div>
-          <div class="usecase-bench-block usecase-bench-qr">
-            <strong>법인QR 서비스</strong><br>
-            <a href="https://swipey.co/" target="_blank" rel="noopener">Swipey</a> (DuitNow QR 연동) · <a href="https://curlec.com/" target="_blank" rel="noopener">Curlec (Razorpay)</a> · <a href="https://hitpayapp.com/my/" target="_blank" rel="noopener">HitPay</a>
-          </div>
-        </div>
         <div class="usecase-table-wrap">
           <table class="usecase-table" role="grid" aria-label="Malaysia Use-case by sector">
             <thead><tr><th>Sector</th><th>세부 업종 (Sub-segment)</th><th>법인카드/QR Use-case (직원/법인 지출)</th><th>벤치마킹 서비스 (Benchmarking)</th></tr></thead>
             <tbody>
-              <tr><td>도소매업</td><td>이커머스 운영 및 물류 대행</td><td><ul class="usecase-bullets"><li>물류 센터 내 소모성 자재(박스, 테이프) 긴급 구매</li><li>물류 차량 통행료(Touch 'n Go 충전) 및 주차비 결제</li><li>수출입 관세 및 통관 대행 소액 수수료 현장 처리</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://curlec.com/" target="_blank" rel="noopener">Curlec (Razorpay)</a><br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://hitpayapp.com/my/" target="_blank" rel="noopener">HitPay</a></td></tr>
-              <tr><td>도소매업</td><td>자동차 정비 및 부품 유통</td><td><ul class="usecase-bullets"><li>외부 부품 공급사에 대한 긴급 부품 확보비 지불</li><li>정비소 운영을 위한 로컬 청소/폐기물 처리 용역비 결제</li><li>영업 직원의 차량 시승 및 고객 방문 활동비</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://tngdigital.com.my/" target="_blank" rel="noopener">TNG Digital</a><br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.grab.com/my/pay/" target="_blank" rel="noopener">GrabPay (B2B)</a></td></tr>
-              <tr><td>기타 서비스</td><td>소형 크리에이티브 에이전시</td><td><ul class="usecase-bullets"><li>프리랜서 디자이너/카피라이터 외주비 실시간 정산</li><li>광고 시안 제작을 위한 로컬 인쇄소 소액 결제</li><li>소액 디지털 광고(FB, Google) 테스트용 광고비 지출</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://bukku.my/" target="_blank" rel="noopener">Bukku</a> (SaaS 결합)<br><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://www.storehub.com/" target="_blank" rel="noopener">StoreHub</a></td></tr>
-              <tr><td>기타 서비스</td><td>로컬 카페 및 베이커리 체인</td><td><ul class="usecase-bullets"><li>본사 일괄 구매 외 지점별 신선 재료 긴급 수급</li><li>배달 대행 업체(Grab/FoodPanda 외 로컬) 비용 정산</li><li>매장 시설(전기, 배수) 긴급 수리 기사 방문 시 결제</li></ul></td><td><span class="bench-type-badge bench-badge-card">카드</span> <a href="https://www.quickash.com/" target="_blank" rel="noopener">QuicKash</a> (SME Lending)<br><span class="bench-type-badge bench-badge-card">카드</span> <a href="https://www.moneylion.com/" target="_blank" rel="noopener">MoneyLion</a> (SME)</td></tr>
-              <tr><td>기타 서비스</td><td>전문 클리닝 및 시설 관리</td><td><ul class="usecase-bullets"><li>현장 투입 인력의 장비 소모품(세제, 도구) 긴급 구매</li><li>원거리 현장 출동 시 직원들의 식대 및 유류비</li><li>소규모 고객사 납품 시 발생하는 배송 용역비</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <a href="https://paydibs.com/" target="_blank" rel="noopener">Paydibs</a><br><span class="bench-type-badge bench-badge-card">카드</span> <a href="https://fundingsocieties.com.my/" target="_blank" rel="noopener">Funding Societies</a></td></tr>
+              <tr><td>도소매업</td><td>이커머스 운영 및 물류 대행</td><td><ul class="usecase-bullets"><li>물류 센터 내 소모성 자재(박스, 테이프) 긴급 구매</li><li>물류 차량 통행료(Touch 'n Go 충전) 및 주차비 결제</li><li>수출입 관세 및 통관 대행 소액 수수료 현장 처리</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://www.chip-in.asia/" target="_blank" rel="noopener">CHIP</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/chip-overview.png" alt="CHIP - Digital Finance Platform" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>SME 대상 Petty Cash 기반 QR 서비스: DuitNow 인프라 기반 QR 결제 플랫폼</li><li>사용 기업 수 미공개 (~수 천 단위 예상)</li></ul></div></span></td></tr>
+              <tr><td>도소매업</td><td>자동차 정비 및 부품 유통</td><td><ul class="usecase-bullets"><li>외부 부품 공급사에 대한 긴급 부품 확보비 지불</li><li>정비소 운영을 위한 로컬 청소/폐기물 처리 용역비 결제</li><li>영업 직원의 차량 시승 및 고객 방문 활동비</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://www.chip-in.asia/" target="_blank" rel="noopener">CHIP</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/chip-overview.png" alt="CHIP - Digital Finance Platform" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>SME 대상 Petty Cash 기반 QR 서비스: DuitNow 인프라 기반 QR 결제 플랫폼</li><li>사용 기업 수 미공개 (~수 천 단위 예상)</li></ul></div></span></td></tr>
+              <tr><td>기타 서비스</td><td>크리에이티브 에이전시, 마케팅 대행사</td><td><ul class="usecase-bullets"><li>프리랜서 디자이너/카피라이터 외주비 실시간 정산</li><li>광고 시안 제작을 위한 로컬 인쇄소 소액 결제</li><li>소액 디지털 광고(FB, Google) 테스트용 광고비 지출</li></ul></td><td><span class="bench-type-badge bench-badge-card">카드</span> <span class="kbiz-tooltip-wrap"><a href="https://swipey.co/" target="_blank" rel="noopener">Swipey</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/swipey-cards.png" alt="Swipey Corporate Cards" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>Tech 스타트업 타겟 법인 카드/QR 서비스: 직원별 전용 Visa 카드 발급 + '25년 6월 DuitNow 파트너십으로 법인 QR도 제공</li><li>2,000개 이상 기업 사용 중</li></ul></div></span><br><span class="bench-type-badge bench-badge-card">카드</span> <span class="kbiz-tooltip-wrap"><a href="https://www.airwallex.com/my" target="_blank" rel="noopener">Airwallex</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/airwallex-cards.png" alt="Airwallex Corporate Cards" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>Cross-border 기업 타겟 법인카드 발급 서비스: 일일 또는 거래당 지출 한도 기반 Visa 카드 사용</li><li>국가마다 QR 시스템이 다른 특성상, 범용성이 큰 Visa (애플/구글 페이로 가능) 발급</li><li>해외 수수료 0% 및 해외 사용 내역 대시보드 관리 제공</li></ul></div></span></td></tr>
+              <tr><td>기타 서비스</td><td>로컬 카페 및 베이커리 체인</td><td><ul class="usecase-bullets"><li>본사 일괄 구매 외 지점별 신선 재료 긴급 수급</li><li>배달 대행 업체(Grab/FoodPanda 외 로컬) 비용 정산</li><li>매장 시설(전기, 배수) 긴급 수리 기사 방문 시 결제</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://www.chip-in.asia/" target="_blank" rel="noopener">CHIP</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/chip-overview.png" alt="CHIP - Digital Finance Platform" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>SME 대상 Petty Cash 기반 QR 서비스: DuitNow 인프라 기반 QR 결제 플랫폼</li><li>사용 기업 수 미공개 (~수 천 단위 예상)</li></ul></div></span></td></tr>
+              <tr><td>기타 서비스</td><td>전문 클리닝 및 시설 관리</td><td><ul class="usecase-bullets"><li>현장 투입 인력의 장비 소모품(세제, 도구) 긴급 구매</li><li>원거리 현장 출동 시 직원들의 식대 및 유류비</li><li>소규모 고객사 납품 시 발생하는 배송 용역비</li></ul></td><td><span class="bench-type-badge bench-badge-qr">QR</span> <span class="kbiz-tooltip-wrap"><a href="https://www.chip-in.asia/" target="_blank" rel="noopener">CHIP</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/chip-overview.png" alt="CHIP - Digital Finance Platform" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>SME 대상 Petty Cash 기반 QR 서비스: DuitNow 인프라 기반 QR 결제 플랫폼</li><li>사용 기업 수 미공개 (~수 천 단위 예상)</li></ul></div></span></td></tr>
+              <tr><td>기타 서비스</td><td>테크 스타트업</td><td><ul class="usecase-bullets"><li>AWS, Slack 등 해외 SaaS 구독 시 카드별로 한도를 설정 후 결제</li></ul></td><td><span class="bench-type-badge bench-badge-card">카드</span> <span class="kbiz-tooltip-wrap"><a href="https://swipey.co/" target="_blank" rel="noopener">Swipey</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/swipey-cards.png" alt="Swipey Corporate Cards" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>Tech 스타트업 타겟 법인 카드/QR 서비스: 직원별 전용 Visa 카드 발급 + '25년 6월 DuitNow 파트너십으로 법인 QR도 제공</li><li>2,000개 이상 기업 사용 중</li></ul></div></span></td></tr>
+              <tr><td>기타 서비스</td><td>다국적 전문 서비스업</td><td><ul class="usecase-bullets"><li>컨설턴트나 변호사의 외근 식대 및 유류비를 카드로 결제</li><li>여러 국가에 흩어진 팀원들에게 현지 통화 카드를 배급하고 본사에서 통합 관리</li></ul></td><td><span class="bench-type-badge bench-badge-card">카드</span> <span class="kbiz-tooltip-wrap"><a href="https://www.airwallex.com/my" target="_blank" rel="noopener">Airwallex</a><div class="kbiz-tooltip-popup"><div class="kbiz-tooltip-images"><img src="img/airwallex-cards.png" alt="Airwallex Corporate Cards" style="width:100%"></div><ul class="kbiz-tooltip-bullets"><li>Cross-border 기업 타겟 법인카드 발급 서비스: 일일 또는 거래당 지출 한도 기반 Visa 카드 사용</li><li>국가마다 QR 시스템이 다른 특성상, 범용성이 큰 Visa (애플/구글 페이로 가능) 발급</li><li>해외 수수료 0% 및 해외 사용 내역 대시보드 관리 제공</li></ul></div></span></td></tr>
             </tbody>
           </table>
         </div>
@@ -602,23 +592,22 @@
     <div id="page-whyso" class="page">
       <div class="exec-summary" role="region" aria-label="Executive summary">
         <strong>Executive summary</strong><br>
-        세 국가는 공통적으로 1) 법인카드 발행 시 요구되는 까다롭고 복잡한 프로세스 (감사보고서 및 은행 거래내역 제출, 담보 기반 한도 설정 등), 2) 높은 수수료 및 느린 정산 속도로 인한 경제성 리스크로 법인카드 사용률이 낮다.
+        두 국가는 공통적으로 1) 법인카드 발행 시 요구되는 까다롭고 복잡한 프로세스 (감사보고서 및 은행 거래내역 제출, 담보 기반 한도 설정 등), 2) 높은 수수료 및 느린 정산 속도로 인한 경제성 리스크로 법인카드 사용률이 낮다.
       </div>
       <div class="chart-card">
         <h3>Why so</h3>
-        <p class="desc">국가별 MSME 법인카드 침투율 저하 원인 · x축: 태국·말레이시아·필리핀, y축: Banking/Economic Barriers</p>
+        <p class="desc">국가별 MSME 법인카드 침투율 저하 원인 · x축: 태국·말레이시아, y축: Banking/Economic Barriers</p>
         <table class="whyso-table" role="grid" aria-label="국가별 MSME 법인카드 침투율 저하 원인">
           <thead>
             <tr>
               <th class="row-label">항목</th>
               <th scope="col">태국</th>
               <th scope="col">말레이시아</th>
-              <th scope="col">필리핀</th>
             </tr>
           </thead>
           <tbody>
             <tr class="section-row">
-              <td colspan="4">A. Bank barrier</td>
+              <td colspan="3">A. Bank barrier</td>
             </tr>
             <tr>
               <td class="row-label"><strong>A-1.</strong> 법인카드 발행 시 증빙 요건</td>
@@ -634,13 +623,6 @@
                 <ul class="detail">
                   <li>감사 면제 대상 소규모 법인(PD10-2024 기준)은 보고서가 없어 발급을 못하는 사례 다수.</li>
                   <li>Data 인프라·금융 교육 부족이 시장 기반 금융 접근을 더욱 제한함.</li>
-                </ul>
-              </td>
-              <td>
-                <div class="point"> 3개년 감사보고서·은행 거래내역 등 증빙으로 SME 발급 제한</div>
-                <ul class="detail">
-                  <li>신용 한도·체크 디스카운트 등에 과거 3개년 AFS(Audited Financial Statements) 요구.</li>
-                  <li>P5MM 이하/이상에 따라 3개월/6개월 은행 거래내역 등 추가 서류 요구로 영세 SME 부담 큼.</li>
                 </ul>
               </td>
             </tr>
@@ -662,13 +644,6 @@
                   <li>담보·공식 재무 데이터 기반 한도 설정으로, 데이터가 부족한 SME는 한도·발급이 제한됨.</li>
                 </ul>
               </td>
-              <td>
-                <div class="point"> 담보·재무 증빙 기반 한도로 소규모 기업 한도 낮음</div>
-                <ul class="detail">
-                  <li>AFS·은행 거래내역 등 증빙이 충분하지 않은 SME는 한도가 낮게 설정되거나 거절됨.</li>
-                  <li>담보·공식 재무 기록이 부족한 MSME가 법인카드로 운영자금을 쓰기 어려운 구조.</li>
-                </ul>
-              </td>
             </tr>
             <tr>
               <td class="row-label"><strong>A-3.</strong> 물리적 접근성</td>
@@ -684,17 +659,9 @@
                   <li>법인카드 발급·한도 변경 등에 지점 방문·실물 서류 제출이 필요해, 지리적·시간적 부담이 있음.</li>
                 </ul>
               </td>
-              <td>
-                <div class="point"> 법인카드 오프라인 발급·섬 지역으로 은행 접근 어려움</div>
-                <ul class="detail">
-                  <li>법인카드는 오프라인으로만 발급되는 경우가 많고, 7,600여 개 섬의 지리적 특성상 지점 방문이 어려움.</li>
-                  <li>전체 시군 중 15.5%는 은행이 없고, 성인 금융가입률 56%로 태국(95.5%)·말레이시아(88.3%)보다 낮음.</li>
-                  <li>실물 서류 제출 프로세스가 복잡해 섬·농촌 SME의 법인카드 발급 비용이 큼.</li>
-                </ul>
-              </td>
             </tr>
             <tr class="section-row">
-              <td colspan="4">B. Economic barrier</td>
+              <td colspan="3">B. Economic barrier</td>
             </tr>
             <tr>
               <td class="row-label"><strong>B-1.</strong> 수수료</td>
@@ -712,14 +679,6 @@
                   <li>신용카드: 인터체인지 상한 0.60%(BNM), 실제 MDR은 여기에 가맹점 수수료 등이 더해져 더 높음.</li>
                   <li>DuitNow QR: 직불 0.25% MDR, 신용 0.5% MDR(2023년 10월부터 부과). 미소·소규모 사업자 상당수 면제.</li>
                   <li>소비자 DuitNow 이체·QR 사용 무료.</li>
-                </ul>
-              </td>
-              <td>
-                <div class="point"> 신용카드 MDR vs InstaPay/PESONet 소액·저비용</div>
-                <ul class="detail">
-                  <li>신용카드: MDR이 게이트웨이·카드사에 따라 2~3%대 이상으로 부담.</li>
-                  <li>InstaPay: 소비자 이체당 P8~P25 수준(BSP 수수료 동결). PESONet P5~P500(금액 구간별).</li>
-                  <li>RTP·QR 결제는 신용카드 대비 상대적으로 저비용이라 MSME가 카드 수취 대신 선호.</li>
                 </ul>
               </td>
             </tr>
@@ -741,14 +700,6 @@
                   <li>MSME가 매출 즉시 회전을 선호해 카드 정산 주기 괴리가 수취 기피 요인으로 작용.</li>
                 </ul>
               </td>
-              <td>
-                <div class="point"> 신용카드 T+1~T+3 vs InstaPay 실시간·PESONet 당일 3회</div>
-                <ul class="detail">
-                  <li>신용카드 매입: T+1~T+3 영업일 정산 일반적.</li>
-                  <li>InstaPay: 24/7 실시간 정산, 수 초 내 입금. PESONet 3MBS: 10:00·13:00·16:00 정산, 당일 2시간 내 입금.</li>
-                  <li>당일 자금 회전 니즈와 괴리로 법인카드 수취 동기 감소.</li>
-                </ul>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -757,7 +708,6 @@
           <ul style="margin: 0.35rem 0 0 1rem; padding-left: 0.5rem;">
             <li>ADB, <em>Asia SME Monitor 2025</em>, <a href="https://www.adb.org/sites/default/files/publication/1096981/asia-sme-monitor-2025.pdf" target="_blank" rel="noopener">https://www.adb.org/sites/default/files/publication/1096981/asia-sme-monitor-2025.pdf</a> (정량 데이터·ASEAN SME 금융 접근)</li>
             <li>ERIA / ASEAN, <em>SME Policy Index: ASEAN 2024 – Enabling Sustainable Growth and Digitalisation</em>, <a href="https://www.eria.org/uploads/ASPI_2024-Full_report-upload-25Sep.pdf" target="_blank" rel="noopener">eria.org</a>, <a href="https://asean.org/wp-content/uploads/2024/09/Full-Report_ASEAN-SME-Policy-Index-2024_20-Sept-2024.pdf" target="_blank" rel="noopener">asean.org</a> (ASEAN SME 금융·디지털화 정책)</li>
-            <li>Philippines: BSP Financial Inclusion Dashboard (2023), McKinsey “Philippines’ unmet banking needs”, CBS check discounting·AFS 요건, InstaPay/PESONet 3MBS (BSP·Maya·TransFi 등)</li>
             <li>Malaysia: SSM PD10-2024 Audit Exemption, MAICSA, ICMR <em>SME Financing Report</em>; PayNet·The Edge “DuitNow QR MDR”, BNM interchange fee</li>
             <li>Thailand: TTB SME Smart Biz·Corporate Card, Kasikornbank Commercial Loan, Business Collateral Act; PaymentsCMI “Payment method transaction fees across Southeast Asia”, DuitNow cross-border; BOT PromptPay, paymentproviders.io·antom “PromptPay in Thailand” (MDR 2.5~4% vs 0.8~1.5%)</li>
             <li>B-1 수수료: PaymentsCMI <a href="https://paymentscmi.com/insights/payment-method-transaction-fees-across-southeast-asia/" target="_blank" rel="noopener">Comparing Payment Method Transaction Fees Across Southeast Asia</a>; Vulcan Post·PayNet “DuitNow QR MDR” (0.25%/0.5%); BSP InstaPay/PESONet 수수료 동결; Curlec “Merchant Discount Rates Malaysia”</li>
@@ -775,127 +725,88 @@
         <nav class="howto-tabs" id="howto-tabs" role="tablist">
           <button type="button" class="active" data-howto-country="thailand" role="tab" aria-selected="true">태국</button>
           <button type="button" data-howto-country="malaysia" role="tab" aria-selected="false">말레이시아</button>
-          <button type="button" data-howto-country="philippines" role="tab" aria-selected="false">필리핀</button>
         </nav>
         <div id="howto-panel-thailand" class="howto-panel active" role="tabpanel">
           <div class="howto-bench-callout">
             <strong>벤치마킹 QR 업체</strong>
             <ul>
-              <li><strong>Opn (formerly Omise)</strong> : 태국·일본 B2B 결제 게이트웨이. PromptPay·카드·이월렛·할부 수취, API·Payment Links+ (<a href="https://www.opn.ooo/" target="_blank" rel="noopener">website</a>)</li>
+              <li><strong>K BIZ (Kasikorn Bank)</strong> : 태국 SME 대상 All-in-One 법인 디지털 뱅킹. PromptPay QR·이체·대량결제·급여·수표 관리, Maker/Authorizer 권한 체계 (<a href="https://www.kasikornbank.com/en/kbiz/pages/index.aspx" target="_blank" rel="noopener">website</a>)</li>
             </ul>
             <div class="howto-bench-customers">
-              <strong>Opn 주요 고객:</strong>
+              <strong>K BIZ 주요 고객:</strong>
               <ul>
-                <li>B2B·이커머스·대기업(자동차, 유통, F&B, 호텔 등) — BMW Thailand, McDonald's, 7-Eleven, DHL, SCG, Grand Hyatt 등</li>
-                <li>온라인 교육·보험·인쇄·구독 결제 가맹점(Globish, Roojai, Gogoprint 등)</li>
-                <li>API 연동·대시보드로 결제 수취·정산 관리하는 사업자</li>
+                <li>태국 300만 MSME 중 약 120만 기업 사용</li>
+                <li>SME·법인·프랜차이즈: Maker/Authorizer 권한 기반 자금 이체·결제·승인 관리</li>
+                <li>12개 통화, 57개국 해외 송금 지원 · 500명 규모 급여 일괄 처리</li>
               </ul>
               <strong class="howto-cover-label">StoreHub 커버 가능 고객:</strong>
               <ul class="howto-cover-list">
-                <li>개인 사업자·초영세 등 Opn API 연동이 부담인 소규모</li>
-                <li>오프라인 단일 점포, 배송·출장 서비스 등 Opn 온라인/연동 밖 업종</li>
+                <li>K BIZ가 커버 못하는 가맹점 업종 제한(MCC Filtering) · 건당 금액 제한 기능 필요 기업</li>
+                <li>결제와 동시에 e-Tax Invoice 자동 생성이 필요한 세무 증빙 체계가 있는 기업</li>
               </ul>
             </div>
           </div>
           <div class="howto-layout">
-            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs Opn">
-              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>Opn</th></tr></thead>
+            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs K BIZ">
+              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>K BIZ (Kasikorn Bank)</th></tr></thead>
               <tbody>
                 <tr><td class="group-cell" colspan="3">Admin onboarding</td></tr>
-                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증(SSM), 이사회 결의서 제출</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">Opn 가맹점 가입·API 키 발급. 사업자 정보·은행 계좌 등록. 온라인 신청·대시보드 설정으로 결제 수취 채널 개설.</span><span class="howto-tooltip-popup" role="tooltip">단, 법인·일부 사업자 유형은 서류 검토·은행 연동 작업이 필요할 수 있음.<br><span class="storehub">⇒ StoreHub: 태국 중앙은행(BOT)의 라이선스를 가진 결제 대행사(e-Money 또는 Payment Agent)와 파트너십을 맺거나 자체 라이선스를 활용하여 추가 서류 없이 즉시 개시</span></span></span></li></ul><p class="howto-qr-ref">참고: <a href="https://www.opn.ooo/th-en/get-started/" target="_blank" rel="noopener">Opn Get Started</a>, <a href="https://docs.omise.co/step-by-step-guide/thailand" target="_blank" rel="noopener">Opn Thailand Step-by-Step</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>Opn은 결제 수취 한도·정산 주기가 계약·상품에 따름. 관리자가 대시보드에서 채널별·거래 한도 확인</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>가맹점 검증 후 승인. API·온라인 중심이라 상대적으로 빠른 개시</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li>Opn 연동 QR·결제 링크·API를 채널(웹, 앱, 키오스크)에 배포. 가맹점이 수취 수단 활성화</li></ul><p class="howto-qr-ref">참고: <a href="https://docs.omise.co/payment-methods/thailand" target="_blank" rel="noopener">Opn Payment Methods Thailand</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증, 이사회 결의서 제출</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">K BIZ 온라인/앱 가입. 사업자등록증(Certificate of Registration), 법인 설립 서류, 대표자 신분증 제출. 연회비 없음.</span><span class="howto-tooltip-popup" role="tooltip">단, KBank 법인 계좌 개설이 선행되어야 하며, 주주 25% 이상 보유자 서류도 필요. 오프라인 방문이 필요한 경우도 있음.<br><span class="storehub">⇒ StoreHub: 사업자번호만으로 온라인 즉시 가입. 기존 은행 계좌 불필요, 별도 서류 없이 즉시 개시</span></span></span></li></ul><img src="img/kbiz-eligibility.png" class="howto-step-img" alt="K BIZ Eligibility"><p class="howto-qr-ref">참고: <a href="https://www.kasikornbank.com/en/kbiz/pages/index.aspx" target="_blank" rel="noopener">K BIZ</a>, <a href="https://www.kasikornbank.com/en/business/sme/financial-services/account/pages/current.aspx" target="_blank" rel="noopener">KBank 법인계좌 안내</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>예금 기반 한도: 타행 이체 1일 최대 10M Baht, 자행 이체 30M Baht. 관리자가 직원별·용도별 권한(Maker/Authorizer) 할당</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>예금 기반이므로 별도 신용 심사 없음. 법인 계좌 개설 후 K BIZ 서비스 즉시 활성화.</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">직원별 K BIZ 앱 설치 후 역할 부여(Maker: 거래 생성, Authorizer: 승인, Viewer: 조회). Administrator가 권한 관리</span><span class="howto-tooltip-popup" role="tooltip">단, K BIZ는 KBank 법인 계좌 전용 서비스로, 모든 직원이 KBank 앱을 설치해야 하며, 타행 계좌 사용 직원은 이용 불가. 직원 수가 많을수록 개별 등록·권한 설정에 시간 소요.<br><span class="storehub">⇒ StoreHub: 은행 무관하게 QR 코드 하나로 즉시 배포. 직원은 별도 앱 설치 없이 카카오톡/LINE 등 기존 메신저로 결제 링크 수신·사용 가능</span></span></span></li></ul><img src="img/kbiz-roles.png" class="howto-step-img" alt="K BIZ Roles - Viewer, Maker, Authorizer, Administrator"><p class="howto-qr-ref">참고: <a href="https://play.google.com/store/apps/details?id=com.kasikornbank.kbiz" target="_blank" rel="noopener">K BIZ App (Google Play)</a></p></td></tr>
                 <tr><td class="group-cell" colspan="3">Employee Expense</td></tr>
                 <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="2">식대, 비품 구매, 교통비 등 현장 지출 발생. (공통)</td></tr>
-                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li>고객이 가맹점 Opn 연동 PromptPay QR·카드·이월렛(ShopeePay, GrabPay 등)으로 결제. 회사는 Opn 대시보드에서 수취·정산 관리</li></ul><p class="howto-qr-ref">참고: <a href="https://docs.omise.co/payment-methods/thailand" target="_blank" rel="noopener">Opn Thailand</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">Opn 대시보드에 결제 내역·E-receipt 자동 저장. 거래 조회·다운로드 가능</span><span class="howto-tooltip-popup" role="tooltip">단, 직원이 개별 채널(PromptPay, 카드 등)로 결제 시 수집이 파편화되고, 회계·세무용으로 다시 정리해야 할 수 있음.<br><span class="storehub">⇒ StoreHub: 직원이 StoreHub 앱으로 PromptPay QR을 찍는 순간, E-receipt 절차 없이 결제 상세 데이터(시간, 장소, 금액, 승인번호)가 즉시 재무 대시보드로 자동 전송</span></span></span></li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">직원(Maker)이 K BIZ 앱에서 PromptPay QR 결제 또는 이체 요청을 생성하면, 사장(Authorizer)에게 푸시 알림이 전송되어 승인 후 법인 계좌에서 즉시 결제</span><span class="howto-tooltip-popup" role="tooltip">단, 모든 결제 건에 사장(Authorizer)의 수동 승인이 필요하여 결제마다 지연 발생. 사장 부재 시 결제 자체가 불가능한 병목이 존재하며, 가맹점 업종·건당 금액 기반 사전 제한 규칙을 설정할 수 없음.<br><span class="storehub">⇒ StoreHub: '가맹점 업종 제한(MCC Filtering)' 및 '건당 금액 제한'을 사전 설정하면, 규칙 범위 내 결제는 사장 승인 없이 자동 처리. 범위 초과 시에만 사장에게 승인 요청</span></span></span></li></ul><p class="howto-qr-ref">참고: <a href="https://www.kasikornbank.com/special/promptpay/pages/indexen.aspx" target="_blank" rel="noopener">KBank PromptPay</a></p></td></tr>
+                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">K BIZ에서 결제 즉시 E-Slip 자동 생성. 최대 12개월 거래 내역 PDF/Excel 조회·다운로드 가능</span><span class="howto-tooltip-popup" role="tooltip">단, E-Slip은 거래 확인용일 뿐 태국 국세청(RD) e-Tax Invoice 규격이 아니므로, 세무 증빙 시 별도로 영수증을 변환·정리해야 함.<br><span class="storehub">⇒ StoreHub: 결제와 동시에 태국 국세청(RD) 규격에 맞는 e-Tax Invoice를 실시간 자동 생성</span></span></span></li></ul></td></tr>
                 <tr><td class="group-cell" colspan="3">Back-office</td></tr>
-                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 축소. Opn 대시보드·API로 결제 데이터 실시간 조회. 별도 청구서 제출 불필요</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li>사전 설정된 한도·채널 내 거래이면 자동 승인 또는 실시간 모니터링</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>Opn 정산 주기에 따라 회사 계좌로 입금. 수취 측이므로 환급 흐름 없음</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 축소. K BIZ 대시보드에 모든 거래 실시간 기록. 관리자(Authorizer/Viewer)가 즉시 조회·공유 가능</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">Maker→Authorizer 실시간 승인 워크플로우. 거래 건별 푸시 알림·SMS·이메일 통지로 즉시 확인</span><span class="howto-tooltip-popup" role="tooltip">단, 한도·업종별 자동 승인 규칙이 없어 소액 결제(커피, 주차비 등)도 매 건 사장이 수동 승인해야 함. 하루 수십 건 이상 발생 시 Authorizer에게 알림 피로(notification fatigue) 발생.<br><span class="storehub">⇒ StoreHub: 정책 기반 자동 승인 엔진 — 설정한 금액·업종 범위 내 결제는 자동 승인 처리, 범위 초과분만 사장에게 승인 알림 전송</span></span></span></li></ul><img src="img/kbiz-account.png" class="howto-step-img" alt="K BIZ Account Dashboard"></td></tr>
+                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>법인 예금 계좌에서 실시간 차감·지급 완료. 직원 개인 자금 선지출 불필요. KBank 내 이체·빌페이먼트 무료(프로모션)</li></ul><img src="img/kbiz-approval.png" class="howto-step-img" alt="K BIZ Transaction Approval List"></td></tr>
               </tbody>
             </table>
           </div>
         </div>
         <div id="howto-panel-malaysia" class="howto-panel" role="tabpanel">
           <div class="howto-bench-callout">
-            <strong>벤치마킹 QR 업체</strong>
+            <strong>벤치마킹 업체</strong>
             <ul>
-              <li><strong>Swipey</strong> : 말레이시아 SME·법인용 기업 카드·비용 관리. 가상/실물 VISA 선불카드, DuitNow QR 연동, BNM 규제 (<a href="https://swipey.co/" target="_blank" rel="noopener">website</a>)</li>
+              <li><strong>Airwallex</strong> (법인카드) : Cross-border 멀티통화 Visa 법인카드. 해외 수수료 0%, 실시간 지출 대시보드, Apple/Google Pay 지원. BNM 규제 (<a href="https://www.airwallex.com/my/spend-management/cards" target="_blank" rel="noopener">website</a>)</li>
+              <li><strong>Swipey</strong> (법인카드) : 말레이시아 SME 전용 선불 Visa 법인카드. 가상/실물 카드, 직원별 한도 설정, DuitNow QR 연동. BNM 규제 (<a href="https://swipey.co/cards/" target="_blank" rel="noopener">website</a>)</li>
+              <li><strong>CHIP</strong> (법인QR) : DuitNow 기반 Petty Cash QR 결제 플랫폼. 직원 지출 관리·예산 할당·실시간 모니터링. BNM 규제 (<a href="https://www.chip-in.asia/control/expense" target="_blank" rel="noopener">website</a>)</li>
             </ul>
             <div class="howto-bench-customers">
-              <strong>Swipey 주요 고객:</strong>
+              <strong>주요 고객:</strong>
               <ul>
-                <li>SME(2,000+ 기업): 비용·카드·정산 자동화 필요 사업자</li>
-                <li>법인·MarTech(INVOKE 등): 팀별·용도별 카드 발급·한도·승인 관리</li>
-                <li>Freemium 2장 가상 카드 무료, Growth/Plus 유료 플랜(물리 카드·한도 확대)</li>
-                <li>VISA·Fasspay 파트너, BNM 규제 하 운영</li>
+                <li><strong>Airwallex</strong> — 다국적 이커머스·SaaS·스타트업(McLaren Racing, SleekFlow, World of Neopets 등 200,000+ 기업)</li>
+                <li><strong>Swipey</strong> — 말레이시아 SME·에이전시·스타트업(INVOKE, SpeedHome, FoundingBird 등 2,000+ 기업)</li>
+                <li><strong>CHIP</strong> — 말레이시아 소상공인·리테일·F&B(Bateriku.com, PTT Outdoor, Beard Brothers BBQ 등 수 천 기업)</li>
               </ul>
               <strong class="howto-cover-label">StoreHub 커버 가능 고객:</strong>
               <ul class="howto-cover-list">
-                <li>제조·물류·B2B 도매 등 Swipey 가맹점 네트워크 밖 업종</li>
-                <li>LHDN·e-Invoice 연동이 필수인 세무 증빙 체계가 있는 중대형 기업</li>
+                <li>제조·물류·B2B 도매 등 세 업체의 가맹점 네트워크 밖 업종</li>
+                <li>LHDN e-Invoice 연동이 필수인 세무 증빙 체계가 있는 중대형 기업</li>
+                <li>가맹점 업종 제한(MCC Filtering) 기반 사전 통제가 필요한 기업</li>
               </ul>
             </div>
           </div>
           <div class="howto-layout">
-            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs Swipey">
-              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>Swipey</th></tr></thead>
+            <table class="howto-compare" role="grid" aria-label="User journey: Airwallex vs Swipey vs CHIP">
+              <thead><tr><th class="step-col">User journey</th><th>Airwallex</th><th>Swipey</th><th>CHIP</th></tr></thead>
               <tbody>
-                <tr><td class="group-cell" colspan="3">Admin onboarding</td></tr>
-                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증(SSM), 이사회 결의서 제출</li></ul></td><td><ul><li>온라인 가입 5~7분. 사업자 서류 제출·검증. Freemium 2장 가상 카드 무료, 유료 플랜에서 물리 카드·한도 확대</li></ul><p class="howto-qr-ref">참고: <a href="https://swipey.co/cards/" target="_blank" rel="noopener">Swipey Corporate Cards</a>, <a href="https://swipey.co/faqs/" target="_blank" rel="noopener">Swipey FAQs</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>카드별·용도별 한도 설정(RM10K/건, RM50K/일, RM500K/월 등). 대시보드·앱에서 직원·부서별 할당</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>별도 신용 심사 없음. 선불(Prepaid) 기반이므로 즉시 승인.</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li>가상 카드 즉시 발급·앱 배포. 물리 카드는 유료 플랜에서 발급. 직원에게 카드 할당·권한 부여</li></ul><p class="howto-qr-ref">참고: <a href="https://swipey.co/corporate-prepaid-card/" target="_blank" rel="noopener">Swipey Corporate Prepaid Card</a></p></td></tr>
-                <tr><td class="group-cell" colspan="3">Employee Expense</td></tr>
-                <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="2">식대, 비품 구매, 교통비 등 현장 지출 발생. (공통)</td></tr>
-                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">직원이 Swipey VISA 카드 또는 DuitNow QR로 결제. 회사 예치금에서 차감, 카드별 한도·용도 적용</span><span class="howto-tooltip-popup" role="tooltip">단, 직원이 그 돈을 점심을 먹는 데 쓰는지, 편의점에서 개인 물품을 사는지 사장은 결제가 끝난 뒤에 모니터링 가능.<br><span class="storehub">⇒ StoreHub: '가맹점 업종 제한(MCC Filtering)' 기능을 제공해 특정 카테고리 업장(주유소, 식당 등)에만 결제 가능하도록 사전 설정</span></span></span></li></ul><p class="howto-qr-ref">참고: <a href="https://www.duitnow.my/" target="_blank" rel="noopener">DuitNow</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 Swipey 앱·대시보드에 디지털 영수증(E-receipt) 자동 생성·저장, 영수증 첨부·정산 연동</span><span class="howto-tooltip-popup" role="tooltip">단, 결제 시 App에 기록은 남지만, 국세청(LHDN) 시스템과 연동된 정식 비즈니스 지출 증빙이 되지는 않아, CEO가 연말에 내역들을 일일이 세무용 영수증으로 다시 변환해야 함.<br><span class="storehub">⇒ StoreHub : 결제와 동시에 정부 규격에 맞는 e-Invoice 실시간 생성</span></span></span></li></ul></td></tr>
-                <tr><td class="group-cell" colspan="3">Back-office</td></tr>
-                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 삭제. 결제 데이터가 Swipey 대시보드에 실시간 기록, 관리자 공유·회계 연동</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li>사전 설정 한도·카테고리 내 지출 자동 승인 또는 실시간 모니터링. 비용 청구·정산 5배 단축</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>회사 예치금에서 상인에게 실시간 지불되었으므로 환급 불필요. 직원 자금 압박 없음</li></ul></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div id="howto-panel-philippines" class="howto-panel" role="tabpanel">
-          <div class="howto-bench-callout">
-            <strong>벤치마킹 QR 업체</strong>
-            <ul>
-              <li><strong>GCash (Mobile Money)</strong> : 필리핀 모바일 머니·금융 슈퍼앱 (<a href="https://www.gcash.com/" target="_blank" rel="noopener">website</a>)</li>
-            </ul>
-            <div class="howto-bench-customers">
-              <strong>GCash 주요 고객:</strong>
-              <ul>
-                <li>단일 점포 상인</li>
-                <li>개인 소비자 등</li>
-              </ul>
-              <strong class="howto-cover-label">StoreHub 커버 가능 고객:</strong>
-              <ul class="howto-cover-list">
-                <li>멀티 로케이션 다점포 사업자</li>
-                <li>배송, 현장 서비스 업체 등</li>
-              </ul>
-            </div>
-          </div>
-          <div class="howto-layout">
-            <table class="howto-compare" role="grid" aria-label="User journey: 법인카드 vs GCash">
-              <thead><tr><th class="step-col">User journey</th><th>법인카드</th><th>GCash (Mobile Money)</th></tr></thead>
-              <tbody>
-                <tr><td class="group-cell" colspan="3">Admin onboarding</td></tr>
-                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li>오프라인 은행 지점 직접 방문. 최소 2~3년의 Audited Financial Statements(감사보고서), 사업자 등록증(SSM), 이사회 결의서 제출</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">GCash for Business 가입(Starter/Premium/Pro). 완전 검증(12개월) 계정 기준, 앱에서 사업자 정보로 비즈니스 월렛 생성. 서류·설정만으로 온라인 신청 가능.</span><span class="howto-tooltip-popup" role="tooltip">단, 비즈니스 계정(GCash for Business) 승인에 수주~수개월 소요. 영세 SME는 승인 거절 잦음<br><span class="storehub">⇒ StoreHub: StoreHub POS 사용 이력이 있다면 신용 심사 없이 즉시 법인 지출 모드 활성화</span></span></span></li></ul><p class="howto-qr-ref">참고: <a href="https://www.gcash.com/business" target="_blank" rel="noopener">GCash for Business</a>, <a href="https://business.gcash.com/login" target="_blank" rel="noopener">Business Portal</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>은행이 재무제표를 심사하여 부여한 신용 한도 내에서만 가능.</li></ul></td><td><ul><li>기업 월렛 한도(Starter P250K~Pro 무제한) 내에서 관리자가 직원·용도별 할당. FDS(Fund Disbursement Service)로 실시간 지급 가능</li></ul><p class="howto-qr-ref">참고: <a href="https://help.gcash.com/hc/en-us/articles/15769253153177-Funds-Disbursement-Service-via-GCash-Biz" target="_blank" rel="noopener">FDS via GCash Biz</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>신용 리스크 평가로 인해 최소 2주~4주 소요. 영세 MSME는 여기서 90% 이상 거절됨.</li></ul></td><td><ul><li>별도 신용 심사 없음. 월렛·계좌 기반이므로 즉시 승인.</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li>실물 카드를 우편 수령 후 직원이 ARS나 앱으로 개별 등록. 분실 시 재발급에 또 1~2주 소요.</li></ul></td><td><ul><li>직원 휴대폰으로 GCash 앱·디지털 권한 즉시 발급. 직원은 GCash 앱에서 회사 월렛/법인 모드 활성화</li></ul></td></tr>
-                <tr><td class="group-cell" colspan="3">Employee Expense</td></tr>
-                <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="2">식대, 비품 구매, 교통비 등 현장 지출 발생. (공통)</td></tr>
-                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li>법인카드로 현장 결제. 법인카드가 없는 직원은 개인 카드나 현금을 먼저 사용.</li></ul></td><td><ul><li>상점 QR 스캔 시 GCash for Business 월렛(회사 돈)으로 결제. In-Store QR·Webpay 등으로 회사 계정에서 직접 결제</li></ul><p class="howto-qr-ref">참고: <a href="https://help.gcash.com/hc/en-us/articles/900006198423-GCash-for-Business-Scan-to-Pay-with-In-store-QR" target="_blank" rel="noopener">In-Store QR</a></p></td></tr>
-                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li>법인카드 결제 종이 영수증을 챙겨서 사진을 찍거나 풀칠해서 보관</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 앱 내 디지털 영수증(E-receipt) 자동 생성·저장. SoundPay(즉시 알림)·거래 내역으로 추적</span><span class="howto-tooltip-popup" role="tooltip">단, 결제 후 SMS나 앱 내 내역만 남음. 영수증 이미지 관리가 파편화되어 세무 증빙 시 누락 발생<br><span class="storehub">⇒ StoreHub: 결제 즉시 디지털 영수증이 클라우드 대시보드에 자동 저장하여 분실 리스크 0%</span></span></span></li></ul></td></tr>
-                <tr><td class="group-cell" colspan="3">Back-office</td></tr>
-                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>월말에 엑셀 파일에 영수증 사진을 첨부하여 재무 담당자에게 이메일/수기 제출</li></ul></td><td><ul><li>절차 삭제. 결제 데이터가 중앙 포털·대시보드에 실시간 기록되어 관리자에게 공유됨</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li>관리자가 영수증과 지출 내역을 일일이 대조. 부정 사용이나 증빙 누락 확인에 수일 소요.</li></ul></td><td><ul><li>한도·카테고리 내 지출은 자동 승인 또는 실시간 모니터링. 거래 추적·알림으로 관리 용이</li></ul></td></tr>
-                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>다음 달 급여일에 직원의 개인 계좌로 환급. 직원은 한 달간 자금 압박.</li></ul></td><td><ul><li>회사 월렛에서 상인·직원에게 실시간 직접 지불되었으므로 환급 불필요. PESONet 등으로 은행 이체 시 무료·저비용</li></ul></td></tr>
+                <tr><td class="group-cell" colspan="4">Admin onboarding</td></tr>
+                <tr><td class="step-cell"><strong>Step 1.</strong> 발급 신청</td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">온라인 가입. SSM 등록 법인 대상, 사업자 서류·이사 신분증 제출. 승인 후 가상 Visa 카드 즉시 생성, 무료</span><span class="howto-tooltip-popup" role="tooltip">단, 말레이시아 법인(SSM 등록)만 가입 가능하며, 개인사업자·프리랜서는 이용 불가. KYB 심사에 수 영업일 소요될 수 있음.<br><span class="storehub">⇒ StoreHub: 사업자번호만으로 온라인 즉시 가입. 개인사업자·프리랜서도 이용 가능, 별도 서류 없이 즉시 개시</span></span></span></li></ul></td><td><ul><li>온라인 가입 5~7분. 사업자 서류 제출·검증. Freemium 2장 가상 카드 무료, 유료 플랜에서 물리 카드·한도 확대</li></ul></td><td><ul><li>온라인 가입. 법인 사업자 서류 제출 후 DuitNow QR 기반 결제 플랫폼 활성화</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 2.</strong> 한도 설정</td><td><ul><li>멀티통화 지갑 잔액 기반. 카드별 일간·주간·월간·분기별 한도 설정. 거래당 한도도 별도 지정 가능</li></ul></td><td><ul><li>카드별·용도별 한도 설정. 대시보드·앱에서 직원·부서별 할당</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">팀·직원별 예산(Budget) 사전 할당. 미사용 잔액 실시간 회수(Claw-back) 가능</span><span class="howto-tooltip-popup" role="tooltip">단, CHIP은 DuitNow QR 전용이라 QR 결제를 수용하지 않는 온라인 쇼핑몰·해외 SaaS 결제에는 사용 불가.<br><span class="storehub">⇒ StoreHub: QR + 카드 + 온라인 결제를 단일 플랫폼에서 지원, 결제 수단 제약 없음</span></span></span></li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 3.</strong> 심사 및 승인</td><td><ul><li>KYB(사업자 검증) 후 별도 신용 심사 없음. 지갑 충전(Prepaid) 기반 즉시 활성화</li></ul></td><td><ul><li>별도 신용 심사 없음. 선불(Prepaid) 기반이므로 즉시 승인</li></ul></td><td><ul><li>별도 신용 심사 없음. 예치금 기반이므로 즉시 활성화</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 4.</strong> 배포 및 등록</td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">가상 카드 즉시 발급. Company Card(팀 공용) / Employee Card(개인용) 구분. Apple Pay·Google Pay 연동</span><span class="howto-tooltip-popup" role="tooltip">단, 말레이시아에서는 물리 카드(Physical Card)를 아직 지원하지 않아 오프라인 현장 결제 시 반드시 모바일 결제(Apple/Google Pay) 가능 단말이 필요.<br><span class="storehub">⇒ StoreHub: QR 코드 하나로 오프라인 결제 즉시 가능. 모바일 단말·NFC 인프라 불필요</span></span></span></li></ul></td><td><ul><li>가상 카드 즉시 발급·앱 배포. 물리 카드는 유료 플랜에서 발급. 직원에게 카드 할당·권한 부여</li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">직원에게 CHIP 앱 설치 후 QR 결제 권한 부여. 각 직원별 예산 할당·동결·회수 가능</span><span class="howto-tooltip-popup" role="tooltip">단, QR 결제만 지원하므로 해외 온라인 결제(AWS, Slack, Google Ads 등)에는 사용 불가. 직원 출장 시 해외 가맹점 결제도 불가능.<br><span class="storehub">⇒ StoreHub: QR + 가상카드를 동시 제공하여 오프라인 QR과 온라인/해외 결제를 단일 플랫폼에서 커버</span></span></span></li></ul></td></tr>
+                <tr><td class="group-cell" colspan="4">Employee Expense</td></tr>
+                <tr class="merged"><td class="step-cell"><strong>Step 5.</strong> 지출 발생</td><td colspan="3">식대, 비품 구매, 교통비, SaaS 구독 등 현장·온라인 지출 발생. (공통)</td></tr>
+                <tr><td class="step-cell"><strong>Step 6.</strong> 결제 수단 선택</td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">직원이 Airwallex Visa 카드(가상)로 온라인·오프라인(Apple/Google Pay) 결제. 멀티통화 지갑에서 즉시 차감</span><span class="howto-tooltip-popup" role="tooltip">단, 카드별 거래당·일간 한도는 설정 가능하지만, 가맹점 업종(MCC) 기반 사전 제한은 지원하지 않아 직원이 어디서 결제하는지 사후에만 확인 가능.<br><span class="storehub">⇒ StoreHub: '가맹점 업종 제한(MCC Filtering)' 및 '건당 금액 제한'을 사전 설정하여 규칙 범위 내 결제만 허용</span></span></span></li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">직원이 Swipey Visa 카드 또는 DuitNow QR로 결제. 회사 예치금에서 차감, 카드별 한도·용도 적용</span><span class="howto-tooltip-popup" role="tooltip">단, Swipey도 가맹점 업종(MCC) 기반 사전 제한을 지원하지 않아 직원이 어디서 결제하는지 사후 모니터링만 가능.<br><span class="storehub">⇒ StoreHub: '가맹점 업종 제한(MCC Filtering)' 기능을 제공해 특정 카테고리 업장(주유소, 식당 등)에만 결제 가능하도록 사전 설정</span></span></span></li></ul></td><td><ul><li>직원이 CHIP 앱에서 DuitNow QR 스캔으로 결제. 할당된 예산에서 실시간 차감</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 7.</strong> 증빙 수집</td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 대시보드에 거래 내역 자동 기록. Xero·QuickBooks·NetSuite 회계 소프트웨어 연동 지원</span><span class="howto-tooltip-popup" role="tooltip">단, 거래 기록은 내부 회계 연동용일 뿐 말레이시아 국세청(LHDN) e-Invoice 규격이 아니므로, 세무 증빙 시 별도로 영수증을 변환·정리해야 함.<br><span class="storehub">⇒ StoreHub: 결제와 동시에 LHDN 규격에 맞는 e-Invoice를 실시간 자동 생성</span></span></span></li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 Swipey 앱·대시보드에 E-receipt 자동 생성. 영수증 사진 첨부·메모 기능. 회계 소프트웨어 연동</span><span class="howto-tooltip-popup" role="tooltip">단, E-receipt은 내부 관리용이며 LHDN e-Invoice 규격이 아니므로, 세무 증빙 시 별도 영수증 변환 필요.<br><span class="storehub">⇒ StoreHub: 결제와 동시에 LHDN 규격에 맞는 e-Invoice를 실시간 자동 생성</span></span></span></li></ul></td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">결제 즉시 CHIP 앱에 거래 기록·영수증 자동 저장. 7년간 보관. 회계 소프트웨어 연동 개발 중(Coming Soon)</span><span class="howto-tooltip-popup" role="tooltip">단, 회계 소프트웨어 연동이 아직 미출시(Coming Soon)이며, LHDN e-Invoice 규격도 미지원. 세무 증빙 시 수동 변환 필수.<br><span class="storehub">⇒ StoreHub: 결제와 동시에 LHDN 규격 e-Invoice 실시간 생성 + 회계 소프트웨어 자동 연동</span></span></span></li></ul></td></tr>
+                <tr><td class="group-cell" colspan="4">Back-office</td></tr>
+                <tr><td class="step-cell"><strong>Step 8.</strong> 비용 청구</td><td><ul><li>절차 축소. Expense Management에서 직원이 영수증 첨부 후 승인 요청, 관리자가 대시보드에서 일괄 검토</li></ul></td><td><ul><li>절차 축소. 결제 데이터가 Swipey 대시보드에 실시간 기록, 관리자 공유·회계 연동. 정산 5배 단축</li></ul></td><td><ul><li>절차 축소. 거래가 CHIP 대시보드에 실시간 기록. 관리자가 즉시 조회·승인</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 9.</strong> 승인 대기</td><td><ul><li><span class="howto-tooltip-wrap"><span class="howto-highlight">카드별 한도 내 자동 승인. 커스텀 승인 워크플로우 설정 가능. 카드 즉시 동결·해제·삭제</span><span class="howto-tooltip-popup" role="tooltip">단, 한도 기반 자동 승인만 가능하고 업종·가맹점 기반 자동 승인 규칙은 없어, 사후 검토에 의존해야 함.<br><span class="storehub">⇒ StoreHub: 정책 기반 자동 승인 엔진 — 금액·업종·가맹점 범위 내 결제는 자동 승인, 범위 초과분만 사장에게 알림</span></span></span></li></ul></td><td><ul><li>사전 설정 한도·카테고리 내 지출 자동 승인 또는 실시간 모니터링</li></ul></td><td><ul><li>Expense Approval Workflow: 관리자가 거래 건별 승인·거절. 중복 청구 자동 감지(Fraud Protection)</li></ul></td></tr>
+                <tr><td class="step-cell"><strong>Step 10.</strong> 정산</td><td><ul><li>멀티통화 지갑에서 실시간 차감 완료. 직원 선지출·환급 불필요. 해외 거래 수수료 0%</li></ul></td><td><ul><li>회사 예치금에서 실시간 지불 완료. 직원 자금 압박 없음</li></ul></td><td><ul><li>회사 예치금에서 DuitNow 실시간 차감·정산 완료. 직원 자금 압박 없음</li></ul></td></tr>
               </tbody>
             </table>
           </div>
@@ -912,7 +823,7 @@
         <p class="appendix-intro">국가별 × 역할별 주요 업체 (인프라: 결제 rail·금융결제원 유사 / SaaS/App: 고객에게 법인카드·QR 서비스를 직접 제공, 카카오페이·토스 유사). 규모·법인 고객 타겟 기준 각 2개씩 정리.</p>
         <table class="keyplayers-table" role="grid" aria-label="Key players by country and role">
           <thead>
-            <tr><th class="role-col">역할</th><th>태국</th><th>말레이시아</th><th>필리핀</th></tr>
+            <tr><th class="role-col">역할</th><th>태국</th><th>말레이시아</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -939,18 +850,6 @@
                   <div class="player-name">PayNet</div>
                   <div class="player-desc">말레이시아 전국 결제망 운영. DuitNow QR·RPP(실시간 결제) 등 인프라 제공.</div>
                   <div class="player-link"><a href="https://paynet.my/" target="_blank" rel="noopener">website</a></div>
-                </div>
-              </td>
-              <td>
-                <div class="player-card">
-                  <div class="player-name">InstaPay (BSP)</div>
-                  <div class="player-desc">BSP NRPS 하 실시간 소액 결제(최대 P50,000). 86개 기관 참가, 법인·소비자 이체 기반.</div>
-                  <div class="player-link"><a href="https://www.bsp.gov.ph/Pages/PAYMENTS%20AND%20SETTLEMENTS/National%20Retail%20Payment%20System/InstaPay.aspx" target="_blank" rel="noopener">website</a></div>
-                </div>
-                <div class="player-card">
-                  <div class="player-name">PESONet (BSP)</div>
-                  <div class="player-desc">BSP NRPS 하 배치 대량 이체. 109개 기관 참가, 급여·대량 결제용 rail.</div>
-                  <div class="player-link"><a href="https://www.bsp.gov.ph/Pages/PAYMENTS%20AND%20SETTLEMENTS/National%20Retail%20Payment%20System/PESONet.aspx" target="_blank" rel="noopener">website</a></div>
                 </div>
               </td>
             </tr>
@@ -980,18 +879,6 @@
                   <div class="player-link"><a href="https://swipey.co/" target="_blank" rel="noopener">website</a></div>
                 </div>
               </td>
-              <td>
-                <div class="player-card">
-                  <div class="player-name">GCash (GCash for Business)</div>
-                  <div class="player-desc">필리핀 1위 모바일 월렛. 비즈니스 월렛·In-Store QR·FDS·대시보드, SME·법인 지출·수금.</div>
-                  <div class="player-link"><a href="https://www.gcash.com/business" target="_blank" rel="noopener">website</a></div>
-                </div>
-                <div class="player-card">
-                  <div class="player-name">Maya Business</div>
-                  <div class="player-desc">온·오프라인 결제·비즈니스 예금·대출·인보이스. 이커머스·소매·F&B·정부 등 B2B 타겟.</div>
-                  <div class="player-link"><a href="https://www.maya.ph/business" target="_blank" rel="noopener">website</a></div>
-                </div>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -1001,21 +888,19 @@
         <div class="currentmarket-charts">
           <div class="currentmarket-section">
             <h4>인프라 — 매출(연간 거래 규모, M USD) + 고객 수(M people)</h4>
-            <p class="chart-desc">태국: PromptPay, BAHTNET / 말레이시아: DuitNow, PayNet / 필리핀: InstaPay, PESONet. 인프라는 매출 대신 연간 거래 규모를 M USD로 환산. 고객=등록·가맹점·참가 기관 수(백만 단위).</p>
+            <p class="chart-desc">태국: PromptPay, BAHTNET / 말레이시아: DuitNow, PayNet. 인프라는 매출 대신 연간 거래 규모를 M USD로 환산. 고객=등록·가맹점·참가 기관 수(백만 단위).</p>
             <div class="currentmarket-callout-row">
               <div class="currentmarket-callout-cell"></div>
               <div class="currentmarket-callout-cell">
                 <div class="currentmarket-bubble"><strong>DuitNow가 PayNet에 비해 작은 이유</strong><br>DuitNow는 PayNet이 운영하는 여러 결제 상품 중 하나(QR·실시간 이체). PayNet은 DuitNow Transfer·RPP·FPX·JomPAY 등 전 결제망을 운영해 연간 5.4T RM 규모인 반면, DuitNow QR은 2024년 31.1B RM·가맹점 2.6M에 그쳐 상대적으로 소규모.</div>
               </div>
-              <div class="currentmarket-callout-cell">
-                <div class="currentmarket-bubble"><strong>필리핀 인프라가 SaaS에 비해 작은 이유</strong><br>InstaPay·PESONet은 BSP NRPS 하의 결제 rail(ACH)로, 참가 기관(은행·NBFI) 수·거래 규모만 집계됨. GCash·Maya는 이 rail 위에서 동작하는 소비자·기업용 월렛으로, 직접 사용자·매출이 커서 지표상 인프라보다 SaaS가 크게 보임.</div>
-              </div>
+              <div class="currentmarket-callout-cell"></div>
             </div>
             <div class="currentmarket-combo-wrap" id="appendix-combo-infra"></div>
           </div>
           <div class="currentmarket-section">
             <h4>SaaS/App — 매출(M USD) + 고객 수(M people)</h4>
-            <p class="chart-desc">태국: Opn, FoodStory / 말레이시아: Touch'n Go, Swipey / 필리핀: GCash, Maya.</p>
+            <p class="chart-desc">태국: Opn, FoodStory / 말레이시아: Touch'n Go, Swipey.</p>
             <div class="currentmarket-callout-row">
               <div class="currentmarket-callout-cell">
                 <div class="currentmarket-bubble"><strong>태국 SaaS/App이 인프라에 비해 작은 이유</strong><br>PromptPay는 BOT 국민 인프라로 전 국민·전 은행이 참여해 77M 등록·47T THB 거래 규모. Opn·FoodStory는 B2B·가맹점 전용 SaaS로, 시장이 인프라 대비 소규모이며 니치(결제 게이트웨이·F&B POS)에 한정됨.</div>
@@ -1089,7 +974,7 @@
     }
   }
 
-  // Finance index 21국: Market index 1번 MSME GDP 상위 10국 + 필리핀 + 벤치마킹 선진 국가 10국 (Taiwan, South Korea, Japan, China, UAE, Saudi Arabia, UK, Germany, France, USA)
+  // Finance index 20국: Market index 1번 MSME GDP 상위 10국 + 벤치마킹 선진 국가 10국 (Taiwan, South Korea, Japan, China, UAE, Saudi Arabia, UK, Germany, France, USA)
   var TOP10_NAMES = MSME_DATA.slice(0, 10).map(function(d) { return d.name; });
   var BENCHMARK_10 = ['Taiwan', 'South Korea', 'Japan', 'China', 'UAE', 'Saudi Arabia', 'UK', 'Germany', 'France', 'USA']; // 벤치마킹 선진 국가
   function rand(min, max, seed) {
@@ -1107,14 +992,6 @@
       bank_wc_pct: { 2023: Math.round(rand(10, 38, i + 1)), 2024: Math.round(rand(12, 40, i + 21)) },
       electronic_pct: { 2023: Math.round(rand(28, 72, i + 2)), 2024: Math.round(rand(32, 76, i + 22)) }
     });
-  });
-  // 필리핀: World Bank Enterprise Surveys 스타일 (checking/savings, bank for working capital, electronic payments)
-  FINANCE_20.push({
-    name: 'Philippines',
-    isBenchmark: false,
-    checking_pct: { 2023: 76, 2024: 78 },
-    bank_wc_pct: { 2023: 14, 2024: 15 },
-    electronic_pct: { 2023: 40, 2024: 42 }
   });
   BENCHMARK_10.forEach(function(name, i) {
     FINANCE_20.push({
@@ -1637,19 +1514,19 @@
   }
 
   var FX_2024 = { THB: 35.26, MYR: 4.6, PHP: 57.3 };
-  var CM_INFRA_NAMES = ['PromptPay', 'BAHTNET', 'DuitNow', 'PayNet', 'InstaPay', 'PESONet'];
-  var CM_INFRA_COUNTRIES = ['태국', '태국', '말레이시아', '말레이시아', '필리핀', '필리핀'];
-  var CM_INFRA_REVENUE = [1333000, 927000, 6760, 1174000, 104700, 160600];
-  var CM_INFRA_REVENUE_LABELS = ['1.33M', '927K', '6.8K', '1.17M', '105K', '161K'];
-  var CM_INFRA_CUSTOMERS = [77, 0.03, 2.6, 0.042, 0.086, 0.109];
-  var CM_INFRA_CUSTOMER_LABELS = ['77', '0.03', '2.6', '0.04', '0.09', '0.11'];
+  var CM_INFRA_NAMES = ['PromptPay', 'BAHTNET', 'DuitNow', 'PayNet'];
+  var CM_INFRA_COUNTRIES = ['태국', '태국', '말레이시아', '말레이시아'];
+  var CM_INFRA_REVENUE = [1333000, 927000, 6760, 1174000];
+  var CM_INFRA_REVENUE_LABELS = ['1.33M', '927K', '6.8K', '1.17M'];
+  var CM_INFRA_CUSTOMERS = [77, 0.03, 2.6, 0.042];
+  var CM_INFRA_CUSTOMER_LABELS = ['77', '0.03', '2.6', '0.04'];
 
-  var CM_SAAS_NAMES = ['Opn', 'FoodStory', "T'n Go", 'Swipey', 'GCash', 'Maya'];
-  var CM_SAAS_COUNTRIES = ['태국', '태국', '말레이시아', '말레이시아', '필리핀', '필리핀'];
-  var CM_SAAS_REVENUE = [19, 5, 51, 1.8, 66, 50];
-  var CM_SAAS_REVENUE_LABELS = ['19', '5', '51', '1.8', '66', '50'];
-  var CM_SAAS_CUSTOMERS = [0.05, 0.05, 22, 0.002, 94, 5.4];
-  var CM_SAAS_CUSTOMER_LABELS = ['0.05', '0.05', '22', '0.002', '94', '5.4'];
+  var CM_SAAS_NAMES = ['Opn', 'FoodStory', "T'n Go", 'Swipey'];
+  var CM_SAAS_COUNTRIES = ['태국', '태국', '말레이시아', '말레이시아'];
+  var CM_SAAS_REVENUE = [19, 5, 51, 1.8];
+  var CM_SAAS_REVENUE_LABELS = ['19', '5', '51', '1.8'];
+  var CM_SAAS_CUSTOMERS = [0.05, 0.05, 22, 0.002];
+  var CM_SAAS_CUSTOMER_LABELS = ['0.05', '0.05', '22', '0.002'];
 
   function renderAppendixCombo(containerId, names, countryNames, revenues, revenueLabels, customers, customerLabels) {
     var wrap = document.getElementById(containerId);
